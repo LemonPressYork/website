@@ -2,7 +2,12 @@ import React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import parse from "html-react-parser";
 
-const Layout = ({ isHomePage, children }) => {
+interface LayoutProps {
+  isHomePage?: boolean;
+  children: React.ReactNode;
+}
+
+const Layout = ({ isHomePage, children }: LayoutProps) => {
   const {
     wp: {
       generalSettings: { title },

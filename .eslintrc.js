@@ -7,7 +7,12 @@ module.exports = {
   globals: {
     __PATH_PREFIX__: true,
   },
-  extends: ["eslint:recommended", "plugin:react/recommended"],
+  extends: [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+  ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -15,7 +20,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
-  plugins: ["react"],
+  plugins: ["react", "@typescript-eslint"],
   rules: {
     indent: ["error", 2],
     quotes: ["error", "double"],
