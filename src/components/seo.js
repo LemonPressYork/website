@@ -5,10 +5,10 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import React from "react"
-import PropTypes from "prop-types"
-import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import React from "react";
+import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
+import { useStaticQuery, graphql } from "gatsby";
 
 const Seo = ({ description, lang, meta, title }) => {
   const { wp, wpUser } = useStaticQuery(
@@ -26,11 +26,11 @@ const Seo = ({ description, lang, meta, title }) => {
           twitter: name
         }
       }
-    `
-  )
+    `,
+  );
 
-  const metaDescription = description || wp.generalSettings?.description
-  const defaultTitle = wp.generalSettings?.title
+  const metaDescription = description || wp.generalSettings?.description;
+  const defaultTitle = wp.generalSettings?.title;
 
   return (
     <Helmet
@@ -41,53 +41,53 @@ const Seo = ({ description, lang, meta, title }) => {
       titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
       meta={[
         {
-          name: `description`,
+          name: "description",
           content: metaDescription,
         },
         {
-          property: `og:title`,
+          property: "og:title",
           content: title,
         },
         {
-          property: `og:description`,
+          property: "og:description",
           content: metaDescription,
         },
         {
-          property: `og:type`,
-          content: `website`,
+          property: "og:type",
+          content: "website",
         },
         {
-          name: `twitter:card`,
-          content: `summary`,
+          name: "twitter:card",
+          content: "summary",
         },
         {
-          name: `twitter:creator`,
-          content: wpUser?.twitter || ``,
+          name: "twitter:creator",
+          content: wpUser?.twitter || "",
         },
         {
-          name: `twitter:title`,
+          name: "twitter:title",
           content: title,
         },
         {
-          name: `twitter:description`,
+          name: "twitter:description",
           content: metaDescription,
         },
       ].concat(meta)}
     />
-  )
-}
+  );
+};
 
 Seo.defaultProps = {
-  lang: `en`,
+  lang: "en",
   meta: [],
-  description: ``,
-}
+  description: "",
+};
 
 Seo.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
-}
+};
 
-export default Seo
+export default Seo;

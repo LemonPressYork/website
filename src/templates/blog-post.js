@@ -1,35 +1,31 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
-import Image from "gatsby-image"
-import parse from "html-react-parser"
+import React from "react";
+import { Link, graphql } from "gatsby";
+import Image from "gatsby-image";
+import parse from "html-react-parser";
 
 // We're using Gutenberg so we need the block styles
 // these are copied into this project due to a conflict in the postCSS
 // version used by the Gatsby and @wordpress packages that causes build
 // failures.
 // @todo update this once @wordpress upgrades their postcss version
-import "../css/@wordpress/block-library/build-style/style.css"
-import "../css/@wordpress/block-library/build-style/theme.css"
+import "../css/@wordpress/block-library/build-style/style.css";
+import "../css/@wordpress/block-library/build-style/theme.css";
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import Bio from "../components/bio";
+import Layout from "../components/layout";
+import Seo from "../components/seo";
 
 const BlogPostTemplate = ({ data: { previous, next, post } }) => {
   const featuredImage = {
     fluid: post.featuredImage?.node?.localFile?.childImageSharp?.fluid,
-    alt: post.featuredImage?.node?.alt || ``,
-  }
+    alt: post.featuredImage?.node?.alt || "",
+  };
 
   return (
     <Layout>
       <Seo title={post.title} description={post.excerpt} />
 
-      <article
-        className="blog-post"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
+      <article className="blog-post" itemScope itemType="http://schema.org/Article">
         <header>
           <h1 itemProp="headline">{parse(post.title)}</h1>
 
@@ -45,9 +41,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
           )}
         </header>
 
-        {!!post.content && (
-          <section itemProp="articleBody">{parse(post.content)}</section>
-        )}
+        {!!post.content && <section itemProp="articleBody">{parse(post.content)}</section>}
 
         <hr />
 
@@ -59,13 +53,12 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
       <nav className="blog-post-nav">
         <ul
           style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+            listStyle: "none",
             padding: 0,
-          }}
-        >
+          }}>
           <li>
             {previous && (
               <Link to={previous.uri} rel="prev">
@@ -84,10 +77,10 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
         </ul>
       </nav>
     </Layout>
-  )
-}
+  );
+};
 
-export default BlogPostTemplate
+export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query BlogPostById(
@@ -130,4 +123,4 @@ export const pageQuery = graphql`
       title
     }
   }
-`
+`;

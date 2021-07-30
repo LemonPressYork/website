@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /**
  * 👋 Hey there!
  * This file is the starting point for your new WordPress/Gatsby site! 🚀
@@ -23,12 +24,10 @@ module.exports = {
        * https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-wordpress/README.md
        *
        */
-      resolve: `gatsby-source-wordpress`,
+      resolve: "gatsby-source-wordpress",
       options: {
         // the only required plugin option for WordPress is the GraphQL url.
-        url:
-          process.env.WPGRAPHQL_URL ||
-          `http://lemonpress.yordevs.com/index.php?graphql`,
+        url: process.env.WPGRAPHQL_URL || "http://lemonpress.yordevs.com/index.php?graphql",
       },
     },
 
@@ -39,9 +38,9 @@ module.exports = {
      * See https://www.gatsbyjs.org/packages/gatsby-source-filesystem/ for more info
      */
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-source-filesystem",
       options: {
-        name: `assets`,
+        name: "assets",
         path: `${__dirname}/content/assets`,
       },
     },
@@ -51,25 +50,25 @@ module.exports = {
      * See https://www.gatsbyjs.com/docs/gatsby-image/#setting-up-gatsby-image
      * if you're curious about it.
      */
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp",
 
     {
       // See https://www.gatsbyjs.com/plugins/gatsby-plugin-manifest/?=gatsby-plugin-manifest
-      resolve: `gatsby-plugin-manifest`,
+      resolve: "gatsby-plugin-manifest",
       options: {
-        name: `Gatsby Starter WordPress Blog`,
-        short_name: `GatsbyJS & WP`,
-        start_url: `/`,
-        background_color: `#ffffff`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        name: "Gatsby Starter WordPress Blog",
+        short_name: "GatsbyJS & WP",
+        start_url: "/",
+        background_color: "#ffffff",
+        theme_color: "#663399",
+        display: "minimal-ui",
+        icon: "content/assets/gatsby-icon.png",
       },
     },
 
     // See https://www.gatsbyjs.com/plugins/gatsby-plugin-react-helmet/?=gatsby-plugin-react-helmet
-    `gatsby-plugin-react-helmet`,
+    "gatsby-plugin-react-helmet",
 
     /**
      * this (optional) plugin enables Progressive Web App + Offline functionality
@@ -77,4 +76,4 @@ module.exports = {
      */
     // `gatsby-plugin-offline`,
   ],
-}
+};
