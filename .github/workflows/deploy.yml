@@ -1,8 +1,8 @@
 name: Deploy Gatsby Build
 
 on:
-  schedule:
-    - cron: "*/60 * * * *"
+#   schedule:
+#     - cron: "*/60 * * * *"
   push:
     branches:
       - main
