@@ -13,7 +13,7 @@ import "../css/@wordpress/block-library/build-style/theme.css";
 
 import Bio from "../components/bio";
 import Layout from "../components/layout";
-import Seo from "../components/seo";
+import SEO from "../components/seo";
 
 const BlogPostTemplate = ({ data: { previous, next, post } }) => {
   const featuredImage = {
@@ -23,7 +23,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
 
   return (
     <Layout>
-      <Seo title={post.title} description={post.excerpt} />
+      <SEO title={post.title} description={post.excerpt} />
 
       <article className="blog-post" itemScope itemType="http://schema.org/Article">
         <header>

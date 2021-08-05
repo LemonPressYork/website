@@ -10,7 +10,14 @@ import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 
-const Seo = ({ description, lang, meta, title }) => {
+interface SEOProps {
+  description?: string;
+  lang?: string;
+  meta: object[];
+  title: string;
+}
+
+const SEO = ({ description = "", lang = "en", meta = [], title }: SEOProps) => {
   const { wp, wpUser } = useStaticQuery(
     graphql`
       query {
@@ -77,17 +84,4 @@ const Seo = ({ description, lang, meta, title }) => {
   );
 };
 
-Seo.defaultProps = {
-  lang: "en",
-  meta: [],
-  description: "",
-};
-
-Seo.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
-};
-
-export default Seo;
+export default SEO;
