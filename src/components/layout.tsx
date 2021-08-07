@@ -1,5 +1,8 @@
 import React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
+import { ThemeProvider } from "styled-components";
+
+import { GlobalStyles, lightTheme } from "../styles/theme";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -22,17 +25,20 @@ export const Layout = ({ children }: LayoutProps) => {
   `);
 
   return (
-    <div>
-      <header>
-        <Link to="/">{title}</Link>
-      </header>
+    <ThemeProvider theme={lightTheme}>
+      <GlobalStyles />
+      <div>
+        <header>
+          <Link to="/">{title}</Link>
+        </header>
 
-      <main>{children}</main>
+        <main>{children}</main>
 
-      <footer>
-        © {new Date().getFullYear()}, Built with <a href="https://www.gatsbyjs.com">Gatsby</a> And{" "}
-        <a href="https://wordpress.org/">WordPress</a>
-      </footer>
-    </div>
+        <footer>
+          © {new Date().getFullYear()}, Built with <a href="https://www.gatsbyjs.com">Gatsby</a> And{" "}
+          <a href="https://wordpress.org/">WordPress</a>
+        </footer>
+      </div>
+    </ThemeProvider>
   );
 };

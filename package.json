@@ -8,6 +8,7 @@
     "url": "https://github.com/LemonPressYork/website/issues"
   },
   "dependencies": {
+    "@fontsource/source-sans-pro": "^4.5.0",
     "@types/react-helmet": "^6.1.2",
     "babel-plugin-styled-components": "^1.13.2",
     "gatsby": "^3.3.0",
