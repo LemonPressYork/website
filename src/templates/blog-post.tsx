@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
-import Image from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import parse from "html-react-parser";
 
 // We're using Gutenberg so we need the block styles
@@ -8,12 +8,12 @@ import parse from "html-react-parser";
 // version used by the Gatsby and @wordpress packages that causes build
 // failures.
 // @todo update this once @wordpress upgrades their postcss version
-import "../css/@wordpress/block-library/build-style/style.css";
-import "../css/@wordpress/block-library/build-style/theme.css";
+// import "../css/@wordpress/block-library/build-style/style.css";
+// import "../css/@wordpress/block-library/build-style/theme.css";
 
-import Bio from "../components/bio";
-import Layout from "../components/layout";
-import SEO from "../components/seo";
+import { Bio } from "../components/bio";
+import { Layout } from "../components/layout";
+import { SEO } from "../components/SEO";
 
 const BlogPostTemplate = ({ data: { previous, next, post } }) => {
   const featuredImage = {
@@ -33,8 +33,8 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
 
           {/* if we have a featured image for this post let's display it */}
           {featuredImage?.fluid && (
-            <Image
-              fluid={featuredImage.fluid}
+            <GatsbyImage
+              image={featuredImage.fluid}
               alt={featuredImage.alt}
               style={{ marginBottom: 50 }}
             />
