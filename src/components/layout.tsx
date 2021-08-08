@@ -1,8 +1,7 @@
 import React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
-import { ThemeProvider } from "styled-components";
 
-import { GlobalStyles, lightTheme } from "../styles/theme";
+import { globalStyles } from "../stitches.config";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -24,21 +23,20 @@ export const Layout = ({ children }: LayoutProps) => {
     }
   `);
 
+  globalStyles();
+
   return (
-    <ThemeProvider theme={lightTheme}>
-      <GlobalStyles />
-      <div>
-        <header>
-          <Link to="/">{title}</Link>
-        </header>
+    <div>
+      <header>
+        <Link to="/">{title}</Link>
+      </header>
 
-        <main>{children}</main>
+      <main>{children}</main>
 
-        <footer>
-          © {new Date().getFullYear()}, Built with <a href="https://www.gatsbyjs.com">Gatsby</a> And{" "}
-          <a href="https://wordpress.org/">WordPress</a>
-        </footer>
-      </div>
-    </ThemeProvider>
+      <footer>
+        © {new Date().getFullYear()}, Built with <a href="https://www.gatsbyjs.com">Gatsby</a> And{" "}
+        <a href="https://wordpress.org/">WordPress</a>
+      </footer>
+    </div>
   );
 };
