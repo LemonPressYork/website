@@ -1,7 +1,10 @@
 import React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 
-import { globalStyles } from "../stitches.config";
+import { globalStyles } from "../../stitches.config";
+
+import { Container } from "../Container";
+import { Footer } from "../Footer";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -33,10 +36,12 @@ export const Layout = ({ children }: LayoutProps) => {
 
       <main>{children}</main>
 
-      <footer>
-        © {new Date().getFullYear()}, Built with <a href="https://www.gatsbyjs.com">Gatsby</a> And{" "}
-        <a href="https://wordpress.org/">WordPress</a>
-      </footer>
+      <Container>
+        <Footer>
+          © {new Date().getFullYear()}, Built with <a href="https://www.gatsbyjs.com">Gatsby</a> And{" "}
+          <a href="https://wordpress.org/">WordPress</a>
+        </Footer>
+      </Container>
     </div>
   );
 };
