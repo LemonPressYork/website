@@ -11,6 +11,9 @@ export const Text = styled("p", {
 
   variants: {
     color: {
+      normal: {
+        color: "$text",
+      },
       light: {
         color: "$textLight",
       },
