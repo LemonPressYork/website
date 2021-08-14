@@ -10,8 +10,8 @@ export const { styled, css, global, keyframes, getCssString, theme } = createCss
       textLight: "#757575",
     },
     space: {
-      1: 15,
-      2: 30,
+      1: "15px",
+      2: "30px",
     },
     fonts: {
       sans: "Source Sans Pro, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
