@@ -1,13 +1,18 @@
 import { Link } from "gatsby";
 import React from "react";
+import { Container } from "../components/Container";
 
-import { Layout } from "../components/layout";
+import { Layout } from "../components/Layout";
 
 const Home = () => {
   return (
     <Layout>
-      <p>Hello!</p>
-      <Link to="/archive">See our other posts.</Link>
+      <Container>
+        <div>
+          <p>Hello!</p>
+          <Link to="/archive">See our other posts.</Link>
+        </div>
+      </Container>
     </Layout>
   );
 };
