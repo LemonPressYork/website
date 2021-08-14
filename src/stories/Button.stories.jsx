@@ -3,7 +3,7 @@ import Button from '../components/button';
 
 
 export default {
-  title: 'Button',
+  title: 'Components/Button',
   component: Button,
   argTypes: {
     backgroundColor: { control: 'color' },

@@ -4,7 +4,7 @@ import { Meta } from "@storybook/react";
 import { Text } from "../components/Text";
 
 export default {
-  title: "Text",
+  title: "Typography/Text",
   component: Text,
   argTypes: {
     content: {
