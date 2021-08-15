@@ -27,6 +27,9 @@ export const { styled, css, global, keyframes, getCssString, theme } = createCss
       semibold: 600,
       bold: 700,
     },
+    transitions: {
+      ease: "0.2s ease",
+    },
   },
 });
 
