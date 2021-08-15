@@ -1,5 +1,4 @@
 import React from "react";
-import { Meta } from "@storybook/react";
 
 import { Text } from "../components/Text";
 
@@ -17,7 +16,7 @@ export default {
       control: "select",
     },
   },
-} as Meta;
+};
 
 const Template = (args) => <Text {...args}>{args.content}</Text>;
 

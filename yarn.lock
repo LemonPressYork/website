@@ -2986,7 +2986,7 @@
     react-docgen-typescript "^2.0.0"
     tslib "^2.0.0"
 
-"@storybook/react@^6.3.7":
+"@storybook/react@*", "@storybook/react@^6.3.7":
   version "6.3.7"
   resolved "https://registry.yarnpkg.com/@storybook/react/-/react-6.3.7.tgz#b15259aeb4cdeef99cc7f09d21db42e3ecd7a01a"
   integrity sha512-4S0iCQIzgi6PdAtV2sYw4uL57yIwbMInNFSux9CxPnVdlxOxCJ+U8IgTxD4tjkTvR4boYSEvEle46ns/bwg5iQ==
@@ -3498,6 +3498,13 @@
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@types/source-list-map/-/source-list-map-0.1.2.tgz#0078836063ffaf17412349bba364087e0ac02ec9"
   integrity sha512-K5K+yml8LTo9bWJI/rECfIPrGgxdpeNbj+d53lwN4QjW1MCwlkhUms+gtdzigTeUyBr09+u8BwOIY3MXvHdcsA==
+
+"@types/storybook__react@^5.2.1":
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/@types/storybook__react/-/storybook__react-5.2.1.tgz#b5fd1612f2e5846b2f441725ea946bafd7ab9edb"
+  integrity sha512-p4QGO+VjEO3YxyWVHpPylNheA0JhStzoCg6RBTmdobrC0ZqLPEIIWu0pFkHlNkmGIiEKW2yDGFJooBe8M4Df0Q==
+  dependencies:
+    "@storybook/react" "*"
 
 "@types/tapable@^1", "@types/tapable@^1.0.5":
   version "1.0.8"
@@ -8595,6 +8602,15 @@ gatsby-link@^3.10.0:
   version "3.10.0"
   resolved "https://registry.yarnpkg.com/gatsby-link/-/gatsby-link-3.10.0.tgz#4e3be3f891d7e2569174ef5664e6a51545b0ce80"
   integrity sha512-8Tt5zDmbth/E89eIAuH8yeZbUzN5We+P/s0Y98+trxxxT2G7QLjFlCSf3/ofFW/mlZLS5DkM64nLGp0q43rBKQ==
+  dependencies:
+    "@babel/runtime" "^7.14.6"
+    "@types/reach__router" "^1.3.7"
+    prop-types "^15.7.2"
+
+gatsby-link@^3.11.0:
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/gatsby-link/-/gatsby-link-3.11.0.tgz#b8e32280ed121ed24b8bd501561d71323bcec6df"
+  integrity sha512-kOishEy33DWl+16ByFqKigxA1W+XdKnFgrG5FAu9a9hAv5FF35wGLx2KEd48ccclK2pBDx7viiXP2lqYjpV7SQ==
   dependencies:
     "@babel/runtime" "^7.14.6"
     "@types/reach__router" "^1.3.7"
