@@ -12,4 +12,4 @@ export default {
 
 const Template = () => <Button  />;
 
-export const Primary = Template.bind();
+export const Primary = Template.bind({});
