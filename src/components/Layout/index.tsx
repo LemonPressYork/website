@@ -48,7 +48,7 @@ export const Layout = ({ children }: LayoutProps) => {
 
       <Container>
         <Footer>
-          © {new Date().getFullYear()}, {footerMessage[Math.floor(Math.random() * footerMessage.length)]} by <TextLink to="https://yordev.com">Yordevs</TextLink>
+          © {new Date().getFullYear()}, {footerMessage[Math.floor(Math.random() * footerMessage.length)]} by <TextLink to="https://yordevs.com">Yordevs</TextLink>
         </Footer>
       </Container>
     </div>

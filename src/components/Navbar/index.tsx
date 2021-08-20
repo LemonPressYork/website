@@ -24,7 +24,7 @@ export const Navbar = () => {
     window.addEventListener("resize", handleResize)
   }, [])
 
-  if (width < 700) {
+  if (width < 800) {
     return <MobileNavbar />
   } else {
     return <DesktopNavbar />
