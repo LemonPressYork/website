@@ -1,6 +1,6 @@
 import React from "react";
 
-import { globalStyles } from "../stitches.config";
+import { globalStyles } from "../../stitches.config";
 
 const Button = () => {
   return (
