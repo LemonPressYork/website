@@ -67,7 +67,7 @@ const SearchIcon = ({ searchActive, setSearchActive, search }) => {
   useEffect(() => {
     window.addEventListener("mousedown", handleClick)
     return () => {
-      document.removeEventListener("mousedown", handleClick);
+      window.removeEventListener("mousedown", handleClick);
     };
   }, [])
 
@@ -82,7 +82,7 @@ export const DesktopNavbar = () => {
   const [searchActive, setSearchActive] = useState(false);
 
   const search = () => {
-    console.log("no search yet :(")
+    //console.log("no search yet :(")
   }
 
   return (
