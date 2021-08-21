@@ -22,6 +22,10 @@ export const Navbar = () => {
   useEffect(() => {
     setWidth(getWidth())
     window.addEventListener("resize", handleResize)
+
+    return (
+      window.removeEventListener("resize", handleResize)
+    )
   }, [])
 
   if (width < 800) {
