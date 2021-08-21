@@ -1,3 +1,4 @@
+/*
 import React from "react";
 import { Navbar } from "../components/Navbar";
 
@@ -6,18 +7,24 @@ import { MobileNavbar } from "../components/Navbar/MobileNavbar";
 
 export default {
   title: "Components/Navbar",
-  component: DesktopNavbar,
-  layout: "fullscreen"
+  component: Navbar,
 };
 
-export const desktopNavbar = (args) => (
+
+export const desktopNavbar = () => (
   <DesktopNavbar />
 );
+
+
 
 export const mobileNavbar = (args) => (
   <MobileNavbar />
 );
 
+
+
 export const navbar = (args) => (
   <Navbar />
 );
+
+*/
