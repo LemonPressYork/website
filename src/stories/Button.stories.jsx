@@ -1,6 +1,5 @@
 import React from 'react';
-import Button from '../components/Button';
-
+import { Button } from '../components/Button'
 
 export default {
   title: 'Components/Button',
@@ -10,6 +9,6 @@ export default {
   },
 };
 
-const Template = () => <Button  />;
+const Template = () => <Button />;
 
 export const Primary = Template.bind({});
