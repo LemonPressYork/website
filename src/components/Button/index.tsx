@@ -2,10 +2,9 @@ import React from "react";
 
 import { globalStyles } from "../../stitches.config";
 
-const Button = () => {
+export const Button = () => {
   return (
     <p>Button</p>
   )
 }
 
-export default Button
