@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "../../stitches.config";
 
 import Logo from "../../media/logo.png"
-import { FiMenu, FiX } from "react-icons/fi";
+import { FiMenu, FiSearch, FiX } from "react-icons/fi";
 import { TextLink } from "../Link";
 import { useState } from "react";
 import { Link } from "gatsby";
@@ -38,10 +38,36 @@ const PageLink = styled(TextLink, {
   marginBottom: "10px"
 })
 
+const SearchBar = () => {
+  return (
+    <input type="text" placeholder="Type here.." id="searchBar"/>
+  )
+}
+
+
+const StyledSearchIcon = styled(FiSearch, {
+  "&:hover": {
+    cursor: "pointer"
+  }
+})
+
+const SearchIcon = ({ search }) => {
+
+  const onSearchClick = () => {
+    search()
+  }
+
+  return (
+    <StyledSearchIcon onClick={onSearchClick} />
+  )
+}
+
 export const MobileNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => { setIsOpen(!isOpen) };
+
+  const search = () => {alert("SEARCH")}
 
   return (
     <>
@@ -59,6 +85,10 @@ export const MobileNavbar = () => {
             <PageLink to={"/about"}>About</PageLink>
             <PageLink to={"/archive"}>Archive</PageLink>
             <PageLink to={"/printed-issues"}>Printed Issue</PageLink>
+            <div style={{marginBottom: "10px"}}>
+              <SearchBar />
+              <SearchIcon search={search}/>
+            </div>
           </NavLinks>
           : null
       }
