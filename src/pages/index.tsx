@@ -6,6 +6,7 @@ import { Layout } from "../components/Layout";
 import { H1, H2, H3 } from "../components/Heading";
 import { Text } from "../components/Text";
 import { TextLink } from "../components/Link/TextLink";
+import { Categories } from "../components/Categories";
 
 const Home = () => {
   return (

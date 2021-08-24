@@ -5,6 +5,7 @@ import { globalStyles } from "../../stitches.config";
 
 import { Container } from "../Container";
 import { Footer } from "../Footer";
+import { Categories } from "../Categories";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -32,6 +33,7 @@ export const Layout = ({ children }: LayoutProps) => {
     <div>
       <header>
         <Link to="/">{title}</Link>
+        <Categories />
       </header>
 
       <main>{children}</main>
