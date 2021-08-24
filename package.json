@@ -59,11 +59,6 @@
     "type": "git",
     "url": "git+https://github.com/LemonPressYork/website.git"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && pretty-quick --staged"
-    }
-  },
   "lint-staged": {
     "*.{js,jsx}": "eslint"
   },
