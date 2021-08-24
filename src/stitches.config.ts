@@ -31,6 +31,11 @@ export const { styled, css, global, keyframes, getCssString, theme } = createCss
       ease: "0.2s ease",
     },
   },
+  media: {
+    smUp: "(min-width: 640px)",
+    mdUp: "(min-width: 768px)",
+    lgUp: "(min-width: 1280px)",
+  },
 });
 
 export const globalStyles = global({

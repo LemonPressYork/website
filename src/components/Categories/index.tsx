@@ -11,7 +11,12 @@ const Bar = styled("div", {
   gridColumn: "1/-1",
 
   display: "flex",
+  flexDirection: "column",
   justifyContent: "space-evenly",
+
+  "@smUp": {
+    flexDirection: "row",
+  },
 });
 
 const CategoryLink = styled(TextLink, {
