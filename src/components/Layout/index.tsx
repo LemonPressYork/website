@@ -32,7 +32,6 @@ export const Layout = ({ children }: LayoutProps) => {
   return (
     <div>
       <header>
-        <Link to="/">{title}</Link>
         <Categories />
       </header>
 
