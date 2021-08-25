@@ -7,6 +7,8 @@ import { Container } from "../Container";
 import { Footer } from "../Footer";
 import { TextLink } from "../Link"
 import { Navbar } from "../Navbar";
+import { Categories } from "../Categories";
+import { MobileToggle } from "../Categories/MobileToggle";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -42,6 +44,7 @@ export const Layout = ({ children }: LayoutProps) => {
     <div>
       <header>
         <Navbar />
+        <Categories />
       </header>
 
       <main>{children}</main>

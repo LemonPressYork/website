@@ -1,5 +1,7 @@
 import { createCss } from "@stitches/react";
 
+import { breakpoints } from "./breakpoints";
+
 export const { styled, css, global, keyframes, getCssString, theme } = createCss({
   theme: {
     colors: {
@@ -31,6 +33,7 @@ export const { styled, css, global, keyframes, getCssString, theme } = createCss
       ease: "0.2s ease",
     },
   },
+  media: breakpoints,
 });
 
 export const globalStyles = global({
