@@ -5,9 +5,11 @@ import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { MobileToggle } from "./MobileToggle";
 import { Bar } from "./Bar";
 
+import { breakpoints } from "../../breakpoints";
+
 export const Categories = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const isDesktop = useMediaQuery("(min-width: 640px)");
+  const isDesktop = useMediaQuery(breakpoints.smUp);
 
   const toggleOpen = () => setIsOpen((prev) => !prev);
 
