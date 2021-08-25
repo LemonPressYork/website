@@ -6,6 +6,7 @@ import { globalStyles } from "../../stitches.config";
 import { Container } from "../Container";
 import { Footer } from "../Footer";
 import { Categories } from "../Categories";
+import { MobileToggle } from "../Categories/MobileToggle";
 
 interface LayoutProps {
   children: React.ReactNode;

@@ -1,37 +1,20 @@
-import React from "react";
-import { styled } from "../../stitches.config";
+import React, { useState } from "react";
 
-import { TextLink } from "../Link";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
 
-import { categories } from "./data";
-
-const Bar = styled("div", {
-  background: "$accentDark",
-
-  gridColumn: "1/-1",
-
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-evenly",
-
-  "@smUp": {
-    flexDirection: "row",
-  },
-});
-
-const CategoryLink = styled(TextLink, {
-  color: "#FFFFFF",
-  textDecoration: "none",
-
-  padding: "$1",
-});
+import { MobileToggle } from "./MobileToggle";
+import { Bar } from "./Bar";
 
 export const Categories = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const isDesktop = useMediaQuery("(min-width: 640px)");
+
+  const toggleOpen = () => setIsOpen((prev) => !prev);
+
   return (
-    <Bar>
-      {categories.map(({ name, id }) => (
-        <CategoryLink to={id}>{name}</CategoryLink>
-      ))}
-    </Bar>
+    <>
+      {!isDesktop ? <MobileToggle isOpen={isOpen} toggleOpen={toggleOpen} /> : null}
+      {isOpen || isDesktop ? <Bar /> : null}
+    </>
   );
 };

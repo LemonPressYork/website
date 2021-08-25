@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 // Code used from https://fireship.io/snippets/use-media-query-hook/
-const useMediaQuery = (query) => {
+export const useMediaQuery = (query: string) => {
   const [matches, setMatches] = useState(false);
 
   useEffect(() => {
@@ -19,5 +19,3 @@ const useMediaQuery = (query) => {
 
   return matches;
 };
-
-export default useMediaQuery;
