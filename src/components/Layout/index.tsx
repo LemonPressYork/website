@@ -5,6 +5,8 @@ import { globalStyles } from "../../stitches.config";
 
 import { Container } from "../Container";
 import { Footer } from "../Footer";
+import { Categories } from "../Categories";
+import { MobileToggle } from "../Categories/MobileToggle";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -31,7 +33,7 @@ export const Layout = ({ children }: LayoutProps) => {
   return (
     <div>
       <header>
-        <Link to="/">{title}</Link>
+        <Categories />
       </header>
 
       <main>{children}</main>
