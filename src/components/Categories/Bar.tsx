@@ -31,7 +31,7 @@ export const Bar = () => {
   return (
     <Wrapper>
       {categories.map(({ name, id }) => (
-        <CategoryLink to={id}>{name}</CategoryLink>
+        <CategoryLink to={`/${id}`}>{name}</CategoryLink>
       ))}
     </Wrapper>
   );
