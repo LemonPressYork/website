@@ -32,6 +32,7 @@ const Content = styled(Container, {
 
 const featuredImageCSS = css({
   maxHeight: 480,
+  minHeight: 300,
 
   "&:after": {
     content: "",
@@ -81,7 +82,7 @@ export const FeaturedPost = () => {
                   id
                   childImageSharp {
                     gatsbyImageData(
-                      width: 1920
+                      layout: FULL_WIDTH
                       height: 480
                       placeholder: BLURRED
                       formats: [AUTO, WEBP, AVIF]
