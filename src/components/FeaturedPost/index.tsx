@@ -8,6 +8,7 @@ import { Container } from "../Container";
 import { H1 } from "../Heading";
 
 import { cleanHTML } from "../../utils/";
+import { UnstyledLink } from "../Link/UnstyledLink";
 
 const Wrapper = styled("div", {
   position: "relative",
@@ -28,6 +29,22 @@ const Content = styled(Container, {
   gridTemplateColumns: "1fr",
   alignItems: "end",
   height: "100%",
+
+  [`& ${UnstyledLink}`]: {
+    position: "static",
+
+    "&:before": {
+      content: "",
+      display: "block",
+      position: "absolute",
+      zIndex: 0,
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      transition: "background $ease",
+    },
+  },
 });
 
 const featuredImageCSS = css({
@@ -48,6 +65,11 @@ const featuredImageCSS = css({
 const Title = styled(H1, {
   color: "#FFFFFF",
   textShadow: "$1",
+
+  textDecoration: "none",
+  transition: "transform $ease",
+
+  "&:hover, &:active": {},
 });
 
 const Excerpt = styled(Text, {
@@ -62,7 +84,7 @@ export const FeaturedPost = () => {
     allWpPost: {
       edges: [
         {
-          node: { title, excerpt, featuredImage },
+          node: { title, excerpt, slug, featuredImage },
         },
       ],
     },
@@ -71,9 +93,9 @@ export const FeaturedPost = () => {
       allWpPost(filter: { id: { eq: "cG9zdDoxMw==" } }) {
         edges {
           node {
-            id
             title
             excerpt
+            slug
             featuredImage {
               node {
                 id
@@ -105,7 +127,9 @@ export const FeaturedPost = () => {
       <Body>
         <Content>
           <div>
-            <Title>{title}</Title>
+            <UnstyledLink to={`/${slug}`}>
+              <Title>{title}</Title>
+            </UnstyledLink>
             <Excerpt>{cleanHTML(excerpt)}</Excerpt>
           </div>
         </Content>
