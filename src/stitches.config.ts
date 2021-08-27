@@ -1,6 +1,6 @@
 import { createCss } from "@stitches/react";
 
-import { breakpoints } from "./breakpoints";
+import { breakpoints } from "./utils/breakpoints";
 
 export const { styled, css, global, keyframes, getCssString, theme } = createCss({
   theme: {
