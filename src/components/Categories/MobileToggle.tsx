@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { styled } from "../../stitches.config";
 

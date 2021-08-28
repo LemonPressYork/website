@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import parse from "html-react-parser";
 
 import { Bio } from "../components/Bio";
@@ -19,7 +19,7 @@ const BlogPostNav = styled("nav", {
 
 const BlogPostTemplate = ({ data: { previous, next, post } }) => {
   const featuredImage = {
-    fluid: post.featuredImage?.node?.localFile?.childImageSharp?.fluid,
+    image: getImage(post.featuredImage),
     alt: post.featuredImage?.node?.alt || "",
   };
 
@@ -35,9 +35,9 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
             <p>{post.date}</p>
 
             {/* if we have a featured image for this post let's display it */}
-            {featuredImage?.fluid && (
+            {featuredImage?.image && (
               <GatsbyImage
-                image={featuredImage.fluid}
+                image={featuredImage.image}
                 alt={featuredImage.alt}
                 style={{ marginBottom: 50 }}
               />
@@ -106,9 +106,12 @@ export const pageQuery = graphql`
           altText
           localFile {
             childImageSharp {
-              fluid(maxWidth: 1000, quality: 100) {
-                ...GatsbyImageSharpFluid_tracedSVG
-              }
+              gatsbyImageData(
+                layout: FULL_WIDTH
+                quality: 100
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+              )
             }
           }
         }

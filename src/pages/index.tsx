@@ -8,10 +8,12 @@ import { Text } from "../components/Text";
 import { TextLink } from "../components/Link/TextLink";
 import { PostCard } from "../components/Posts";
 import { PostDetails } from "../components/Posts/PostDetails";
+import { FeaturedPost } from "../components/FeaturedPost";
 
 const Home = () => {
   return (
     <Layout>
+      <FeaturedPost />
       <Container>
         <div>
           <Text>

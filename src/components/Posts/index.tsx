@@ -5,7 +5,7 @@ import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { PostCardMobile } from "./PostCardMobile";
 import { PostCardDesktop } from "./PostCardDesktop";
 
-import { breakpoints } from "../../breakpoints";
+import { breakpoints } from "../../utils/breakpoints";
 
 export const PostCard = ({ image, title, date, category, postText }) => {
   const isDesktop = useMediaQuery(breakpoints.smUp);
