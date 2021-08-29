@@ -7,67 +7,11 @@ import { Text } from "../Text";
 import { Container } from "../Container";
 import { H1 } from "../Heading";
 
-import { TextLink, UnstyledLink } from "../Link/";
+import { UnstyledLink } from "../Link/";
 import { getFeaturedPost } from "./getFeaturedPost";
 
 const Wrapper = styled("div", {
   position: "relative",
-});
-
-const Body = styled("div", {
-  position: "absolute",
-  top: 0,
-  left: 0,
-
-  width: "100%",
-  height: "calc(100% - 2* $space$2)",
-
-  padding: "$2 0",
-});
-
-const Title = styled(H1, {
-  color: "#FFFFFF",
-  textShadow: "$1",
-
-  textDecoration: "none",
-});
-
-const Content = styled(Container, {
-  gridTemplateColumns: "1fr",
-  alignItems: "end",
-  height: "100%",
-
-  transition: "transform $ease",
-
-  "&:hover, &:focus-within": {
-    transform: "translateY(-15px)",
-  },
-
-  [`${UnstyledLink}`]: {
-    position: "relative",
-    zIndex: 1,
-  },
-
-  [`& ${Title} ${UnstyledLink}`]: {
-    position: "static",
-
-    "&:before": {
-      content: "",
-      display: "block",
-      position: "absolute",
-      zIndex: 0,
-      width: "100%",
-      height: "100%",
-      top: 0,
-      left: 0,
-      transition: "background $ease",
-    },
-  },
-});
-
-const featuredImageCSS = css({
-  maxHeight: 480,
-  minHeight: 300,
 
   "&:after": {
     content: "",
@@ -76,18 +20,57 @@ const featuredImageCSS = css({
     height: "100%",
     top: 0,
     left: 0,
-    background: "linear-gradient(hsla(0, 0%, 0%, 0), hsla(0, 0%, 0%, 0.7))",
+    background: "linear-gradient(hsla(0, 0%, 0%, 0), hsla(0, 0%, 0%, 1))",
+    opacity: 0.7,
+    transition: "opacity $ease",
+  },
+
+  "&:hover:after": {
+    opacity: 0.85,
   },
 });
 
-const Excerpt = styled(Text, {
+const Body = styled("div", {
+  position: "absolute",
+  top: 0,
+  left: 0,
+
+  width: "100%",
+  height: "calc(100% - 2 * $space$2)",
+
+  padding: "$2 0",
+});
+
+const Title = styled(H1, {
+  color: "#FFFFFF",
+  textShadow: "$1",
+  textDecoration: "none",
+
+  margin: 0,
+});
+
+const Content = styled(Container, {
   position: "relative",
   zIndex: 1,
 
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "end",
+  height: "100%",
+});
+
+const featuredImageCSS = css({
+  maxHeight: 480,
+  minHeight: 300,
+});
+
+const Excerpt = styled(Text, {
   color: "#FFFFFF",
   fontWeight: "$semibold",
   fontSize: "$3",
   textShadow: "$1",
+
+  margin: 0,
 });
 
 export const FeaturedPost = () => {
@@ -97,17 +80,15 @@ export const FeaturedPost = () => {
 
   return (
     <Wrapper>
-      <GatsbyImage image={image} alt="" className={featuredImageCSS()} />
-      <Body>
-        <Content>
-          <div>
-            <Title>
-              <UnstyledLink to={`/${slug}`}>{title}</UnstyledLink>
-            </Title>
+      <UnstyledLink to={`/${slug}`}>
+        <GatsbyImage image={image} alt="" className={featuredImageCSS()} />
+        <Body>
+          <Content>
+            <Title>{title}</Title>
             <Excerpt>{parse(excerpt)}</Excerpt>
-          </div>
-        </Content>
-      </Body>
+          </Content>
+        </Body>
+      </UnstyledLink>
     </Wrapper>
   );
 };
