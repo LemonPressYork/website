@@ -8,29 +8,27 @@ function getWidth() {
     document.documentElement.scrollWidth,
     document.body.offsetWidth,
     document.documentElement.offsetWidth,
-    document.documentElement.clientWidth
+    document.documentElement.clientWidth,
   );
 }
 
 export const Navbar = () => {
-  const [width, setWidth] = useState(null)
+  const [width, setWidth] = useState(null);
 
-  const handleResize = () => [
-    setWidth(getWidth())
-  ]
+  const handleResize = () => [setWidth(getWidth())];
 
   useEffect(() => {
-    setWidth(getWidth())
-    window.addEventListener("resize", handleResize)
+    setWidth(getWidth());
+    window.addEventListener("resize", handleResize);
 
-    return (
-      window.removeEventListener("resize", handleResize)
-    )
-  }, [])
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   if (width < 800) {
-    return <MobileNavbar />
+    return <MobileNavbar />;
   } else {
-    return <DesktopNavbar />
+    return <DesktopNavbar />;
   }
 };
