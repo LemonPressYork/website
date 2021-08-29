@@ -29,11 +29,19 @@ const PageLinks = styled("div", {
 const PageLink = styled(TextLink, {
   margin: "15px",
   textDecoration: "none",
+  color: "$text",
+
+  "&:hover": {
+    color: "$textLight",
+  },
 });
 
 const StyledSearchIcon = styled(FiSearch, {
+  color: "$text",
+
   "&:hover": {
     cursor: "pointer",
+    color: "$textLight",
   },
 });
 

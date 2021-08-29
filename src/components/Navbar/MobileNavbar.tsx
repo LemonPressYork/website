@@ -37,6 +37,11 @@ const NavLinks = styled("div", {
 const PageLink = styled(TextLink, {
   marginBottom: "10px",
   textDecoration: "none",
+  color: "$text",
+
+  "&:hover": {
+    color: "$textLight",
+  },
 });
 
 const SearchBar = () => {
@@ -44,8 +49,11 @@ const SearchBar = () => {
 };
 
 const StyledSearchIcon = styled(FiSearch, {
+  color: "$text",
+
   "&:hover": {
     cursor: "pointer",
+    color: "$textLight",
   },
 });
 
