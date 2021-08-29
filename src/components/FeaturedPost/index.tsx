@@ -1,5 +1,4 @@
 import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import parse from "html-react-parser";
 import { styled, css } from "../../stitches.config";
@@ -9,6 +8,7 @@ import { Container } from "../Container";
 import { H1 } from "../Heading";
 
 import { TextLink, UnstyledLink } from "../Link/";
+import { getFeaturedPost } from "./getFeaturedPost";
 
 const Wrapper = styled("div", {
   position: "relative",
@@ -91,44 +91,7 @@ const Excerpt = styled(Text, {
 });
 
 export const FeaturedPost = () => {
-  const {
-    allWpPost: {
-      edges: [
-        {
-          node: { title, excerpt, slug, featuredImage },
-        },
-      ],
-    },
-  } = useStaticQuery(graphql`
-    query postData {
-      allWpPost(filter: { id: { eq: "cG9zdDo0Nw==" } }) {
-        edges {
-          node {
-            title
-            excerpt
-            slug
-            featuredImage {
-              node {
-                id
-                sourceUrl
-                localFile {
-                  id
-                  childImageSharp {
-                    gatsbyImageData(
-                      layout: FULL_WIDTH
-                      height: 480
-                      placeholder: BLURRED
-                      formats: [AUTO, WEBP, AVIF]
-                    )
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
+  const { title, excerpt, slug, featuredImage } = getFeaturedPost();
 
   const image = getImage(featuredImage.node.localFile);
 
