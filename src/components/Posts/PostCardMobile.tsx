@@ -49,13 +49,13 @@ const DateCategory = styled("div", {
   color: "$textLight",
 });
 
-export const PostCardMobile = ({ image, title, date, category }) => {
+export const PostCardMobile = ({ image, title, slug, date, category, categorySlug }) => {
   return (
-    <Wrapper to={`/${title.replace(/\s+/g, "-").toLowerCase()}`}>
+    <Wrapper to={`/${slug}`}>
       <TextWrapper>
         <PostTitle>{title}</PostTitle>
         <DateCategory>
-          {date} • <UnstyledLink to={`/${category}`}>{category}</UnstyledLink>
+          {date} • <UnstyledLink to={`/${categorySlug}`}>{category}</UnstyledLink>
         </DateCategory>
       </TextWrapper>
       <PostImage src={image} />

@@ -7,13 +7,20 @@ import { PostCardDesktop } from "./PostCardDesktop";
 
 import { breakpoints } from "../../utils/breakpoints";
 
-export const PostCard = ({ image, title, date, category, postText }) => {
+export const PostCard = ({ image, title, slug, date, category, categorySlug, excerpt }) => {
   const isDesktop = useMediaQuery(breakpoints.smUp);
 
   return (
     <>
       {!isDesktop ? (
-        <PostCardMobile image={image} title={title} date={date} category={category} />
+        <PostCardMobile
+          image={image}
+          title={title}
+          slug={slug}
+          date={date}
+          category={category}
+          categorySlug={categorySlug}
+        />
       ) : null}
       {isDesktop ? (
         <PostCardDesktop
@@ -21,7 +28,9 @@ export const PostCard = ({ image, title, date, category, postText }) => {
           title={title}
           date={date}
           category={category}
-          postText={postText}
+          excerpt={excerpt}
+          categorySlug={categorySlug}
+          slug={slug}
         />
       ) : null}
     </>

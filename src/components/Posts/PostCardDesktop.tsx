@@ -50,16 +50,16 @@ const DateCategory = styled("div", {
   color: "$textLight",
 });
 
-export const PostCardDesktop = ({ image, title, date, category, postText }) => {
+export const PostCardDesktop = ({ image, title, slug, date, category, categorySlug, excerpt }) => {
   return (
-    <Wrapper to={`/${title.replace(/\s+/g, "-").toLowerCase()}`}>
+    <Wrapper to={`/${slug}`}>
       <TextWrapper>
         <PostTitle>{title}</PostTitle>
         <Clamp withTooltip={false} lines={4}>
-          <PostExcerpt>{postText}</PostExcerpt>
+          <PostExcerpt>{excerpt}</PostExcerpt>
         </Clamp>
         <DateCategory>
-          {date} • <UnstyledLink to={`/${category}`}>{category}</UnstyledLink>
+          {date} • <UnstyledLink to={`/${categorySlug}`}>{category}</UnstyledLink>
         </DateCategory>
       </TextWrapper>
       <PostImage src={image} />

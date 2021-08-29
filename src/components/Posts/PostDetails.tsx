@@ -34,12 +34,12 @@ const DateReadTime = styled("div", {
   color: "$textLight",
 });
 
-export const PostDetails = ({ image, name, date, length }) => {
+export const PostDetails = ({ image, name, nameslug, date, length }) => {
   return (
     <Wrapper>
       <AuthorImage src={image} />
       <TextWrapper>
-        <AuthorName to={`/${name.replace(/\s+/g, "-").toLowerCase()}`}>{name}</AuthorName>
+        <AuthorName to={`/${nameslug}`}>{name}</AuthorName>
         <DateReadTime>
           {date} • {length} min read
         </DateReadTime>
