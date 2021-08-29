@@ -2,33 +2,15 @@ import React, { useEffect, useState } from "react";
 import { DesktopNavbar } from "./DesktopNavbar";
 import { MobileNavbar } from "./MobileNavbar";
 
-function getWidth() {
-  return Math.max(
-    document.body.scrollWidth,
-    document.documentElement.scrollWidth,
-    document.body.offsetWidth,
-    document.documentElement.offsetWidth,
-    document.documentElement.clientWidth,
-  );
-}
+import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { breakpoints } from "../../utils/breakpoints";
 
 export const Navbar = () => {
-  const [width, setWidth] = useState(null);
+  const isDesktop = useMediaQuery(breakpoints.navWidth);
 
-  const handleResize = () => [setWidth(getWidth())];
-
-  useEffect(() => {
-    setWidth(getWidth());
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  if (width < 800) {
-    return <MobileNavbar />;
-  } else {
+  if (isDesktop) {
     return <DesktopNavbar />;
+  } else {
+    return <MobileNavbar />;
   }
 };
