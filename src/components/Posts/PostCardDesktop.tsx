@@ -45,7 +45,7 @@ const PostExcerpt = styled(Text, {
   margin: 0,
   
   "&:hover@": {
-  cursor: pointer
+    cursor: "pointer"
   }
 });
 
