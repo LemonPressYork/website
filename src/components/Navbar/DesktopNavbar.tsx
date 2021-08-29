@@ -38,6 +38,7 @@ const PageLink = styled(TextLink, {
 
 const StyledSearchIcon = styled(FiSearch, {
   color: "$text",
+  marginLeft: "5px",
 
   "&:hover": {
     cursor: "pointer",
@@ -96,8 +97,8 @@ export const DesktopNavbar = () => {
         <PageLink to="/about">About</PageLink>
         <PageLink to="/archive">Archive</PageLink>
         <PageLink to="/print-issues">Print Issues</PageLink>
-        <SearchIcon setSearchActive={setSearchActive} search={search} searchActive={searchActive} />
         {searchActive ? <SearchBar /> : null}
+        <SearchIcon setSearchActive={setSearchActive} search={search} searchActive={searchActive} />
       </PageLinks>
     </Holder>
   );
