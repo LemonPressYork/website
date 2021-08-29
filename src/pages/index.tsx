@@ -1,12 +1,14 @@
-import { Link } from "gatsby";
 import React from "react";
-import { Container } from "../components/Container";
+import { Link, useStaticQuery } from "gatsby";
+import { getImage } from "gatsby-plugin-image";
 
+import { Container } from "../components/Container";
 import { Layout } from "../components/Layout";
 import { H1, H2, H3 } from "../components/Heading";
 import { Text } from "../components/Text";
 import { TextLink } from "../components/Link/TextLink";
 import { FeaturedPost } from "../components/FeaturedPost";
+import { CategoryPost } from "../components/CategoryPost";
 
 const Home = () => {
   return (
@@ -32,6 +34,7 @@ const Home = () => {
             This is an internal <TextLink to="/404">link.</TextLink>
           </Text>
         </div>
+        <CategoryPost title="Hello" category="Test" image={getImage} />
       </Container>
     </Layout>
   );
