@@ -12,16 +12,6 @@ export const PostCard = ({ image, title, slug, date, category, categorySlug, exc
 
   return (
     <>
-      {!isDesktop ? (
-        <PostCardMobile
-          image={image}
-          title={title}
-          slug={slug}
-          date={date}
-          category={category}
-          categorySlug={categorySlug}
-        />
-      ) : null}
       {isDesktop ? (
         <PostCardDesktop
           image={image}
@@ -32,7 +22,16 @@ export const PostCard = ({ image, title, slug, date, category, categorySlug, exc
           categorySlug={categorySlug}
           slug={slug}
         />
-      ) : null}
+      ) : (
+      <PostCardMobile
+          image={image}
+          title={title}
+          slug={slug}
+          date={date}
+          category={category}
+          categorySlug={categorySlug}
+        />
+      )}
     </>
   );
 };
