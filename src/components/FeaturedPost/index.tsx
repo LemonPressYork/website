@@ -1,6 +1,7 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import parse from "html-react-parser";
 import { styled, css } from "../../stitches.config";
 
 import { Text } from "../Text";
@@ -90,7 +91,7 @@ export const FeaturedPost = () => {
     },
   } = useStaticQuery(graphql`
     query postData {
-      allWpPost(filter: { id: { eq: "cG9zdDoxOQ==" } }) {
+      allWpPost(filter: { id: { eq: "cG9zdDo0Nw==" } }) {
         edges {
           node {
             title
@@ -130,7 +131,7 @@ export const FeaturedPost = () => {
             <UnstyledLink to={`/${slug}`}>
               <Title>{title}</Title>
             </UnstyledLink>
-            <Excerpt>{cleanHTML(excerpt)}</Excerpt>
+            <Excerpt>{parse(excerpt)}</Excerpt>
           </div>
         </Content>
       </Body>
