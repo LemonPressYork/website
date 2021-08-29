@@ -38,7 +38,7 @@ const PostExcerpt = styled(Text, {
   display: "flex",
   fontSize: "$2",
   paddingBottom: "5px",
-  color: "$text",
+  color: "$textLight",
   overflow: "hidden",
   textOverflow: "ellipsis",
   whiteSpace: "normal",
