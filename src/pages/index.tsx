@@ -6,10 +6,12 @@ import { Layout } from "../components/Layout";
 import { H1, H2, H3 } from "../components/Heading";
 import { Text } from "../components/Text";
 import { TextLink } from "../components/Link/TextLink";
+import { FeaturedPost } from "../components/FeaturedPost";
 
 const Home = () => {
   return (
     <Layout>
+      <FeaturedPost />
       <Container>
         <div>
           <Text>

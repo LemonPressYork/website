@@ -5,7 +5,7 @@ import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { MobileToggle } from "./MobileToggle";
 import { Bar } from "./Bar";
 
-import { breakpoints } from "../../breakpoints";
+import { breakpoints } from "../../utils/breakpoints";
 
 export const Categories = () => {
   const [isOpen, setIsOpen] = useState(false);
