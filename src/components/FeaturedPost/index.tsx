@@ -1,14 +1,14 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import parse from "html-react-parser";
 import { styled, css } from "../../stitches.config";
 
 import { Text } from "../Text";
 import { Container } from "../Container";
 import { H1 } from "../Heading";
 
-import { cleanHTML } from "../../utils/";
-import { UnstyledLink } from "../Link/UnstyledLink";
+import { TextLink, UnstyledLink } from "../Link/";
 
 const Wrapper = styled("div", {
   position: "relative",
@@ -25,12 +25,30 @@ const Body = styled("div", {
   padding: "$2 0",
 });
 
+const Title = styled(H1, {
+  color: "#FFFFFF",
+  textShadow: "$1",
+
+  textDecoration: "none",
+});
+
 const Content = styled(Container, {
   gridTemplateColumns: "1fr",
   alignItems: "end",
   height: "100%",
 
-  [`& ${UnstyledLink}`]: {
+  transition: "transform $ease",
+
+  "&:hover, &:focus-within": {
+    transform: "translateY(-15px)",
+  },
+
+  [`${UnstyledLink}`]: {
+    position: "relative",
+    zIndex: 1,
+  },
+
+  [`& ${Title} ${UnstyledLink}`]: {
     position: "static",
 
     "&:before": {
@@ -38,10 +56,10 @@ const Content = styled(Container, {
       display: "block",
       position: "absolute",
       zIndex: 0,
-      top: 0,
-      left: 0,
       width: "100%",
       height: "100%",
+      top: 0,
+      left: 0,
       transition: "background $ease",
     },
   },
@@ -62,17 +80,10 @@ const featuredImageCSS = css({
   },
 });
 
-const Title = styled(H1, {
-  color: "#FFFFFF",
-  textShadow: "$1",
-
-  textDecoration: "none",
-  transition: "transform $ease",
-
-  "&:hover, &:active": {},
-});
-
 const Excerpt = styled(Text, {
+  position: "relative",
+  zIndex: 1,
+
   color: "#FFFFFF",
   fontWeight: "$semibold",
   fontSize: "$3",
@@ -90,7 +101,7 @@ export const FeaturedPost = () => {
     },
   } = useStaticQuery(graphql`
     query postData {
-      allWpPost(filter: { id: { eq: "cG9zdDoxOQ==" } }) {
+      allWpPost(filter: { id: { eq: "cG9zdDo0Nw==" } }) {
         edges {
           node {
             title
@@ -127,10 +138,10 @@ export const FeaturedPost = () => {
       <Body>
         <Content>
           <div>
-            <UnstyledLink to={`/${slug}`}>
-              <Title>{title}</Title>
-            </UnstyledLink>
-            <Excerpt>{cleanHTML(excerpt)}</Excerpt>
+            <Title>
+              <UnstyledLink to={`/${slug}`}>{title}</UnstyledLink>
+            </Title>
+            <Excerpt>{parse(excerpt)}</Excerpt>
           </div>
         </Content>
       </Body>
