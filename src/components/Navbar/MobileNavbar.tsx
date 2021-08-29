@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "../../stitches.config";
 
-import Logo from "../../media/logo.png"
+import Logo from "../../media/logo.png";
 import { FiMenu, FiSearch, FiX } from "react-icons/fi";
 import { TextLink } from "../Link";
 import { useState } from "react";
@@ -16,58 +16,57 @@ const Holder = styled("div", {
   backgroundColor: "#FFFEA1",
   display: "flex",
   alignItems: "center",
-})
+});
 
 const MenuToggle = styled("a", {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   position: "absolute",
-  right: "50px"
-})
+  right: "50px",
+});
 
 const NavLinks = styled("div", {
   display: "grid",
   gridTemplateColumns: "1fr",
   width: "100%",
   backgroundColor: "#FFFEA1",
-  paddingLeft: "50px"
-})
+  paddingLeft: "50px",
+});
 
 const PageLink = styled(TextLink, {
-  marginBottom: "10px"
-})
+  marginBottom: "10px",
+  textDecoration: "none",
+});
 
 const SearchBar = () => {
-  return (
-    <input type="text" placeholder="Type here.." id="searchBar"/>
-  )
-}
-
+  return <input type="text" placeholder="Type here.." id="searchBar" />;
+};
 
 const StyledSearchIcon = styled(FiSearch, {
   "&:hover": {
-    cursor: "pointer"
-  }
-})
+    cursor: "pointer",
+  },
+});
 
 const SearchIcon = ({ search }) => {
-
   const onSearchClick = () => {
-    search()
-  }
+    search();
+  };
 
-  return (
-    <StyledSearchIcon onClick={onSearchClick} />
-  )
-}
+  return <StyledSearchIcon onClick={onSearchClick} />;
+};
 
 export const MobileNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggle = () => { setIsOpen(!isOpen) };
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
 
-  const search = () => {alert("SEARCH")}
+  const search = () => {
+    alert("SEARCH");
+  };
 
   return (
     <>
@@ -79,19 +78,17 @@ export const MobileNavbar = () => {
           {isOpen ? <FiX style={{ fontSize: 24 }} /> : <FiMenu style={{ fontSize: 24 }} />}
         </MenuToggle>
       </Holder>
-      {
-        isOpen ?
-          <NavLinks>
-            <PageLink to={"/about"}>About</PageLink>
-            <PageLink to={"/archive"}>Archive</PageLink>
-            <PageLink to={"/printed-issues"}>Printed Issue</PageLink>
-            <div style={{marginBottom: "10px"}}>
-              <SearchBar />
-              <SearchIcon search={search}/>
-            </div>
-          </NavLinks>
-          : null
-      }
+      {isOpen ? (
+        <NavLinks>
+          <PageLink to={"/about"}>About</PageLink>
+          <PageLink to={"/archive"}>Archive</PageLink>
+          <PageLink to={"/printed-issues"}>Printed Issue</PageLink>
+          <div style={{ marginBottom: "10px" }}>
+            <SearchBar />
+            <SearchIcon search={search} />
+          </div>
+        </NavLinks>
+      ) : null}
     </>
-  )
-}
+  );
+};

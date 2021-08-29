@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { styled } from "../../stitches.config";
 
-import Logo from "../../media/logo.png"
+import Logo from "../../media/logo.png";
 import { TextLink } from "../Link";
-import { FiSearch } from "react-icons/fi"
+import { FiSearch } from "react-icons/fi";
 import { Link } from "gatsby";
 import { useState } from "react";
 //Must implement gatsby image plugin
@@ -16,74 +16,68 @@ const Holder = styled("div", {
   backgroundColor: "#FFFEA1",
   display: "flex",
   alignItems: "center",
-})
+});
 
 const PageLinks = styled("div", {
   display: "flex",
   alignItems: "center",
   justifyContent: "space-around",
   right: "100px",
-  position: "absolute"
-})
+  position: "absolute",
+});
 
 const PageLink = styled(TextLink, {
-  margin: "15px"
-})
+  margin: "15px",
+  textDecoration: "none",
+});
 
 const StyledSearchIcon = styled(FiSearch, {
   "&:hover": {
-    cursor: "pointer"
-  }
-})
+    cursor: "pointer",
+  },
+});
 
 const SearchBar = () => {
-  return (
-    <input type="text" placeholder="Type here.." id="searchBar"/>
-  )
-}
+  return <input type="text" placeholder="Type here.." id="searchBar" />;
+};
 
 const SearchIcon = ({ searchActive, setSearchActive, search }) => {
-
   const onSearchClick = () => {
     if (searchActive) {
-      search()
+      search();
     } else {
-      setSearchActive(true)
+      setSearchActive(true);
     }
-  }
+  };
 
   const handleClick = (e) => {
-    const searchIcon = document.getElementById("searchIcon")
-    const searchBar = document.getElementById("searchBar")
-    if (searchIcon && searchIcon.contains(e.target)){
-      onSearchClick()
+    const searchIcon = document.getElementById("searchIcon");
+    const searchBar = document.getElementById("searchBar");
+    if (searchIcon && searchIcon.contains(e.target)) {
+      onSearchClick();
     } else {
       if (searchBar && !searchBar.contains(e.target)) {
-        setSearchActive(false)
+        setSearchActive(false);
       }
     }
-  }
+  };
 
   useEffect(() => {
-    window.addEventListener("mousedown", handleClick)
+    window.addEventListener("mousedown", handleClick);
     return () => {
       window.removeEventListener("mousedown", handleClick);
     };
-  }, [])
+  }, []);
 
-  return (
-    <StyledSearchIcon id="searchIcon" />
-  )
-}
-
-
+  return <StyledSearchIcon id="searchIcon" />;
+};
 
 export const DesktopNavbar = () => {
   const [searchActive, setSearchActive] = useState(false);
 
   const search = () => {
     //console.log("no search yet :(")
-  }
+  };
 
   return (
     <Holder>
@@ -95,12 +89,8 @@ export const DesktopNavbar = () => {
         <PageLink to="/archive">Archive</PageLink>
         <PageLink to="/print-issues">Print Issues</PageLink>
         <SearchIcon setSearchActive={setSearchActive} search={search} searchActive={searchActive} />
-        {
-          searchActive ?
-            <SearchBar />
-            : null
-        }
+        {searchActive ? <SearchBar /> : null}
       </PageLinks>
     </Holder>
-  )
-}
+  );
+};
