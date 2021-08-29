@@ -7,10 +7,12 @@ const Wrapper = styled("div", {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  margin: "20px",
 });
 
 const Preview = styled("img", {
-  maxWidth: "100%",
+  minWidth: "200px",
+  width: "100%",
   marginTop: "10px",
 });
 
