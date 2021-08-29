@@ -1,16 +1,26 @@
 import React from "react";
-import { Link, useStaticQuery, graphql } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby";
 
 import { globalStyles } from "../../stitches.config";
 
 import { Container } from "../Container";
 import { Footer } from "../Footer";
+import { TextLink } from "../Link"
+import { Navbar } from "../Navbar";
 import { Categories } from "../Categories";
 import { MobileToggle } from "../Categories/MobileToggle";
 
 interface LayoutProps {
   children: React.ReactNode;
 }
+
+const footerMessage = [
+  "Lovingly crafted",
+  "Handmade",
+  "Forged in fire",
+  "Meticulously designed",
+  "Carefully created"
+]
 
 export const Layout = ({ children }: LayoutProps) => {
   const {
@@ -33,6 +43,7 @@ export const Layout = ({ children }: LayoutProps) => {
   return (
     <div>
       <header>
+        <Navbar />
         <Categories />
       </header>
 
@@ -40,8 +51,7 @@ export const Layout = ({ children }: LayoutProps) => {
 
       <Container>
         <Footer>
-          © {new Date().getFullYear()}, Built with <a href="https://www.gatsbyjs.com">Gatsby</a> And{" "}
-          <a href="https://wordpress.org/">WordPress</a>
+          © {new Date().getFullYear()}, {footerMessage[Math.floor(Math.random() * footerMessage.length)]} by <TextLink to="https://yordevs.com">Yordevs</TextLink>
         </Footer>
       </Container>
     </div>
