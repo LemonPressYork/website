@@ -9,11 +9,11 @@ type FeaturedPost = {
 
 export const getFeaturedPost = (): FeaturedPost => {
   const {
-    allWpPost: { edges: posts },
+    allWpPost: { posts },
   } = useStaticQuery(graphql`
     query postData {
       allWpPost(filter: { id: { eq: "cG9zdDo0Nw==" } }) {
-        edges {
+        posts: edges {
           node {
             title
             excerpt

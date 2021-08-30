@@ -30,6 +30,7 @@
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.2.0",
+    "react-multiline-clamp": "^2.0.0",
     "typeface-merriweather": "1.1.13",
     "typeface-montserrat": "1.1.13"
   },
