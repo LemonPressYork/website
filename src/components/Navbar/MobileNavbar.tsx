@@ -90,7 +90,7 @@ export const MobileNavbar = () => {
         <NavLinks>
           <PageLink to={"/about"}>About</PageLink>
           <PageLink to={"/archive"}>Archive</PageLink>
-          <PageLink to={"/printed-issues"}>Printed Issue</PageLink>
+          <PageLink to={"/print-issues"}>Print Issues</PageLink>
           <div style={{ marginBottom: "10px" }}>
             <SearchBar />
             <SearchIcon search={search} />
