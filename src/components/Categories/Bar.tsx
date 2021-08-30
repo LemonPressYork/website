@@ -3,7 +3,7 @@ import { styled } from "../../stitches.config";
 
 import { TextLink } from "../Link";
 
-import { categories } from "./data";
+import { getCategories } from "./getCategories";
 
 const Wrapper = styled("div", {
   background: "$accentDark",
@@ -28,10 +28,14 @@ const CategoryLink = styled(TextLink, {
 });
 
 export const Bar = () => {
+  const categories = getCategories();
+
   return (
     <Wrapper>
-      {categories.map(({ name, id }) => (
-        <CategoryLink to={`/${id}`}>{name}</CategoryLink>
+      {categories.map(({ node: { name, slug, id } }) => (
+        <CategoryLink to={`/${slug}`} key={id}>
+          {name}
+        </CategoryLink>
       ))}
     </Wrapper>
   );
