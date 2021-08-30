@@ -18,6 +18,7 @@ const Preview = styled("img", {
 
 const Title = styled(TextLink, {
   textDecoration: "none",
+  textAlign: "center",
   fontSize: "$3",
   fontWeight: "$bold",
   fontFamily: "$sans",
