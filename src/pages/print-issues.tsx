@@ -107,7 +107,7 @@ export default PrintIssues;
 
 export const pageQuery = graphql`
   query {
-    PrintIssues {
+    allIssues {
       edges {
         node {
           title

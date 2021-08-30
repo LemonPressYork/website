@@ -83,14 +83,19 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-source-multi-api",
+      resolve: "gatsby-source-custom-api",
       options: {
-        apis: [
-          {
-            prefix: "Print",
-            baseUrl: "https://lemon-press-issuu.herokuapp.com",
-          },
-        ],
+        url: "https://lemon-press-issuu.herokuapp.com/issues",
+        rootKey: "issues",
+        schemas: {
+          issues: `
+            username: String
+            docname: String
+            epoch: String
+            documentId: String
+            title: String
+          `,
+        },
       },
     },
   ],
