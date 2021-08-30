@@ -12,7 +12,7 @@ export const getFeaturedPost = (): FeaturedPost => {
     allWpPost: { posts },
   } = useStaticQuery(graphql`
     query postData {
-      allWpPost(filter: { id: { eq: "cG9zdDo0Nw==" } }) {
+      allWpPost(filter: { isSticky: { eq: true } }, sort: { fields: date, order: DESC }, limit: 1) {
         posts: edges {
           node {
             title
