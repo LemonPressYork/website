@@ -8768,6 +8768,11 @@ gatsby-source-filesystem@^3.12.0:
     valid-url "^1.0.9"
     xstate "^4.14.0"
 
+gatsby-source-multi-api@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/gatsby-source-multi-api/-/gatsby-source-multi-api-1.0.5.tgz#c1e8c5c5dcc023b1d2e6244404e83973333c274a"
+  integrity sha512-jmZmWy1gdaUpk8tKMwi3YwoRVGHhcIF/KRqbLN2xvZ5EXilmijTrtJdNjNI1Il9bG9oCqGPopVSPvig+7NaLEQ==
+
 gatsby-source-wordpress@^5.12.1:
   version "5.12.1"
   resolved "https://registry.yarnpkg.com/gatsby-source-wordpress/-/gatsby-source-wordpress-5.12.1.tgz#fc9e031e8f8eff8ee4f5e27b41f332c7140b2130"

@@ -82,5 +82,16 @@ module.exports = {
         allExtensions: true,
       },
     },
+    {
+      resolve: "gatsby-source-multi-api",
+      options: {
+        apis: [
+          {
+            prefix: "Print",
+            baseUrl: "https://lemon-press-issuu.herokuapp.com",
+          },
+        ],
+      },
+    },
   ],
 };

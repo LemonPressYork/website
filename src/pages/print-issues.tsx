@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { graphql } from "gatsby";
+
 import { Layout } from "../components/Layout";
 import { PrintIssueCard } from "../components/PrintIssues/PrintIssueCard";
 import { styled } from "../stitches.config";
 import { H1, H3 } from "../components/Heading";
-import { fetchIssues } from "../utils/fetchIssues";
 
 const Wrapper = styled("div", {
   padding: "50px",
@@ -18,13 +20,37 @@ const Subtitle = styled(H3, {
   fontWeight: "$semibold",
 });
 
-const PrintIssues = () => {
-  const [issues, setIssues] = useState(false);
+/*
+issues.map(issue => {
+  let date = new Date(issue.epoch)
+  return (
+    <PrintIssueCard
+      title={issue.Title}
+      date={`${monthNames[date.getMonth()]} ${date.getFullYear()}}
+      link="https://issuu.com/thelemonpress/docs/${issue.docName}"
+      image="https://image.issuu.com/${issue.documentId}/jpg/page_1_thumb_large.jpg"
+      ></PrintIssueCard>
+  )
+})
+*/
 
-  useEffect(() => {
-    fetchIssues();
-  }, []);
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
+const PrintIssues = ({ data: { issues } }) => {
+  console.log(issues);
   return (
     <Layout>
       <Wrapper>
@@ -78,3 +104,22 @@ const PrintIssues = () => {
 };
 
 export default PrintIssues;
+
+export const pageQuery = graphql`
+  query {
+    PrintIssues {
+      edges {
+        node {
+          title
+          epoch
+          documentId
+          docname
+        }
+      }
+    }
+  }
+`;
+
+PrintIssues.propTypes = {
+  data: PropTypes.object.isRequired,
+};
