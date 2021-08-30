@@ -20,20 +20,6 @@ const Subtitle = styled(H3, {
   fontWeight: "$semibold",
 });
 
-/*
-issues.map(issue => {
-  let date = new Date(issue.epoch)
-  return (
-    <PrintIssueCard
-      title={issue.Title}
-      date={`${monthNames[date.getMonth()]} ${date.getFullYear()}}
-      link="https://issuu.com/thelemonpress/docs/${issue.docName}"
-      image="https://image.issuu.com/${issue.documentId}/jpg/page_1_thumb_large.jpg"
-      ></PrintIssueCard>
-  )
-})
-*/
-
 const monthNames = [
   "January",
   "February",
@@ -92,7 +78,3 @@ export const pageQuery = graphql`
     }
   }
 `;
-
-PrintIssues.propTypes = {
-  data: PropTypes.object.isRequired,
-};
