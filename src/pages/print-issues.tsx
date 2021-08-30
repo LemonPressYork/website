@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import { graphql } from "gatsby";
 
 import { Layout } from "../components/Layout";
@@ -47,7 +46,7 @@ const PrintIssues = ({
         <Subtitle>Checkout all our print issues... digitally</Subtitle>
         <IssuesHolder>
           {edges.map((issue) => {
-            let date = new Date(issue.node.epoch);
+            const date = new Date(issue.node.epoch);
             return (
               <PrintIssueCard
                 title={issue.node.title}
