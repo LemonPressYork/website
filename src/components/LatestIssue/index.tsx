@@ -29,7 +29,7 @@ const monthNames = [
   "December",
 ];
 
-export const LatestPost = () => {
+export const LatestIssue = () => {
   const isDesktop = useMediaQuery(breakpoints.smUp);
 
   const { title, epoch, documentId, docname } = getLatestIssue();
