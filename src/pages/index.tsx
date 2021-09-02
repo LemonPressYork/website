@@ -9,11 +9,13 @@ import { TextLink } from "../components/Link/TextLink";
 import { PostCard } from "../components/Posts";
 import { PostDetails } from "../components/Posts/PostDetails";
 import { FeaturedPost } from "../components/FeaturedPost";
+import { LatestIssue } from "../components/LatestIssue";
 
 const Home = () => {
   return (
     <Layout>
       <FeaturedPost />
+      <LatestIssue />
       <Container>
         <div>
           <Text>
