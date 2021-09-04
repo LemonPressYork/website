@@ -1,4 +1,5 @@
 import React from "react";
+import { styled } from "../stitches.config";
 import { Link, graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import parse from "html-react-parser";
@@ -7,7 +8,8 @@ import { Bio } from "../components/Bio";
 import { Layout } from "../components/Layout";
 import { SEO } from "../components/SEO";
 import { Container } from "../components/Container";
-import { styled } from "../stitches.config";
+
+import { calculateReadTime, cleanHTML } from "../utils";
 
 const Article = styled("article", {
   gridColumn: "1 / -1",
@@ -31,8 +33,8 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
         <Article>
           <header>
             <h1>{parse(post.title)}</h1>
-
             <p>{post.date}</p>
+            <p>{calculateReadTime(cleanHTML(post.content))} minute read.</p>
 
             {/* if we have a featured image for this post let's display it */}
             {featuredImage?.image && (

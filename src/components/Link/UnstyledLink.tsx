@@ -10,7 +10,8 @@ interface Props {
 }
 
 const styles = css({
-  textDecoration: "none",
+  color: "inherit",
+  textDecoration: "inherit",
 });
 
 export const UnstyledLink = ({ to, className = "", children }: Props) => {

@@ -7,13 +7,17 @@ import { Layout } from "../components/Layout";
 import { H1, H2, H3 } from "../components/Heading";
 import { Text } from "../components/Text";
 import { TextLink } from "../components/Link/TextLink";
+import { PostCard } from "../components/Posts";
+import { PostDetails } from "../components/Posts/PostDetails";
 import { FeaturedPost } from "../components/FeaturedPost";
 import { CategoryPost } from "../components/CategoryPost";
+import { LatestIssue } from "../components/LatestIssue";
 
 const Home = () => {
   return (
     <Layout>
       <FeaturedPost />
+      <LatestIssue />
       <Container>
         <div>
           <Text>
@@ -33,6 +37,22 @@ const Home = () => {
           <Text>
             This is an internal <TextLink to="/404">link.</TextLink>
           </Text>
+          <PostCard
+            image="https://miro.medium.com/fit/c/262/262/0*z8Y-S5VRjD2B2dPx.jpg"
+            title="First Post"
+            slug="first-post"
+            date="28 Aug"
+            category="Test"
+            categorySlug="test"
+            excerpt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          />
+          <PostDetails
+            name="Harry Wickham"
+            date="12 June"
+            image="https://miro.medium.com/fit/c/262/262/0*z8Y-S5VRjD2B2dPx.jpg"
+            length="12"
+            nameslug="harry-wickham"
+          />
         </div>
         <CategoryPost title="Hello" category="Test" image={getImage} />
       </Container>

@@ -82,5 +82,21 @@ module.exports = {
         allExtensions: true,
       },
     },
+    {
+      resolve: "gatsby-source-custom-api",
+      options: {
+        url: "https://lemon-press-issuu.herokuapp.com/issues",
+        rootKey: "issues",
+        schemas: {
+          issues: `
+            username: String
+            docname: String
+            epoch: String
+            documentId: String
+            title: String
+          `,
+        },
+      },
+    },
   ],
 };
