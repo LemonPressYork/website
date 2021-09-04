@@ -9,15 +9,9 @@ import { H2 } from "../Heading";
 const Wrapper = styled("div", {
   position: "relative",
 
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-between",
-
   backgroundColor: "$text",
 
-  padding: "$1",
-
-  maxHeight: 250,
+  minHeight: 250,
 });
 
 const CategoryBubble = styled(Text, {
@@ -39,19 +33,42 @@ const Title = styled(H2, {
   fontSize: "$3",
 });
 
-const backgroundImage = css({
+const backgroundImage = css({ objectFit: "cover", height: "100%" });
+
+const Body = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+
   position: "absolute",
   top: 0,
   left: 0,
+
+  padding: "$1",
+
+  width: "calc(100% - 2 * $space$1)",
+  height: "calc(100% - 2 * $space$1)",
+
+  background: "hsla(0, 0%, 0%, 0.5)",
+
+  transition: "background $ease",
+
+  "&:hover": {
+    background: "hsla(0, 0%, 0%, 0.75)",
+  },
 });
 
-export const CategoryPost = ({ title, category, image }) => {
+export const CategoryPost = ({ title, to, category, image }) => {
   return (
     <Wrapper>
-      <GatsbyImage image={image} alt="" className={backgroundImage()} />
-      <Title>{title}</Title>
-      <UnstyledLink to="">
-        <CategoryBubble>{category}</CategoryBubble>
+      <UnstyledLink to={to}>
+        <GatsbyImage image={image} alt="" className={backgroundImage()} />
+        <Body>
+          <Title>{title}</Title>
+          <UnstyledLink to="">
+            <CategoryBubble>{category}</CategoryBubble>
+          </UnstyledLink>
+        </Body>
       </UnstyledLink>
     </Wrapper>
   );
