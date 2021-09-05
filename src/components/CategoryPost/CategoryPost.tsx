@@ -14,8 +14,10 @@ const Wrapper = styled("div", {
   minHeight: 250,
 });
 
-const CategoryBubble = styled(Text, {
+const CategoryBubble = styled(UnstyledLink, {
   padding: "5px $1",
+
+  display: "block",
 
   color: "$text",
   backgroundColor: "white",
@@ -26,6 +28,13 @@ const CategoryBubble = styled(Text, {
   textTransform: "uppercase",
 
   borderRadius: "9999px",
+
+  transition: "background-color $ease, color $ease",
+
+  "&:hover": {
+    backgroundColor: "black",
+    color: "white",
+  },
 });
 
 const Title = styled(H2, {
@@ -66,7 +75,7 @@ export const CategoryPost = ({ title, to, category, image }) => {
         <Body>
           <Title>{title}</Title>
           <UnstyledLink to="">
-            <CategoryBubble>{category}</CategoryBubble>
+            <CategoryBubble to={category.link}>{category.name}</CategoryBubble>
           </UnstyledLink>
         </Body>
       </UnstyledLink>

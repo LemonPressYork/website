@@ -21,6 +21,7 @@ export const CategoryGrid = ({ css }) => {
         posts: edges {
           node {
             title
+            slug
             categories {
               nodes {
                 name
@@ -54,14 +55,15 @@ export const CategoryGrid = ({ css }) => {
         ({
           node: {
             title,
+            slug,
             categories: { nodes },
             featuredImage,
           },
         }) => (
           <CategoryPost
             title={title}
-            to={nodes[0].link}
-            category={nodes[0].name}
+            to={slug}
+            category={{ name: nodes[0].name, link: nodes[0].link }}
             image={getImage(featuredImage?.node.localFile)}
           />
         ),
