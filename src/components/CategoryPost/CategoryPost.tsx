@@ -19,6 +19,8 @@ const CategoryBubble = styled(UnstyledLink, {
 
   display: "block",
 
+  width: "min-content",
+
   color: "$text",
   backgroundColor: "white",
   fontWeight: "$bold",
