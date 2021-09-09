@@ -1,10 +1,13 @@
 import { graphql, useStaticQuery } from "gatsby";
 
 type Post = {
-  title: string;
-  excerpt: string;
-  slug: string;
-  featuredImage: { node: { id; sourceUrl; localFile } };
+  node: {
+    title: string;
+    excerpt: string;
+    slug: string;
+    featuredImage: { node: { id; sourceUrl; localFile } };
+    categories: { nodes };
+  };
 };
 
 export const getCategoryPosts = (): Post[] => {
