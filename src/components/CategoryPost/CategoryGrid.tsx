@@ -10,6 +10,8 @@ const Grid = styled("div", {
   gridTemplateColumns: "repeat( auto-fit, minmax(250px, 1fr) )",
   gridColumnGap: "$1",
   gridRowGap: "$1",
+
+  margin: "calc(2 * $1) 0",
 });
 
 export const CategoryGrid = ({ css }) => {
