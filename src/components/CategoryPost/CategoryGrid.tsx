@@ -1,9 +1,9 @@
 import React from "react";
-import { graphql, useStaticQuery } from "gatsby";
 import { getImage } from "gatsby-plugin-image";
 import { styled } from "../../stitches.config";
 
 import { CategoryPost } from "./CategoryPost";
+import { getCategoryPosts } from "./getCategoryPosts";
 
 const Grid = styled("div", {
   display: "grid",
@@ -15,41 +15,7 @@ const Grid = styled("div", {
 });
 
 export const CategoryGrid = ({ css }) => {
-  const {
-    allWpPost: { posts },
-  } = useStaticQuery(graphql`
-    {
-      allWpPost(sort: { fields: date, order: DESC }, limit: 4) {
-        posts: edges {
-          node {
-            title
-            slug
-            categories {
-              nodes {
-                name
-                link
-              }
-            }
-            featuredImage {
-              node {
-                id
-                localFile {
-                  childImageSharp {
-                    id
-                    gatsbyImageData(
-                      layout: CONSTRAINED
-                      placeholder: BLURRED
-                      formats: [AUTO, WEBP, AVIF]
-                    )
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
+  const posts = getCategoryPosts();
 
   return (
     <Grid css={css}>
