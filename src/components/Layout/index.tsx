@@ -5,7 +5,7 @@ import { globalStyles } from "../../stitches.config";
 
 import { Container } from "../Container";
 import { Footer } from "../Footer";
-import { TextLink } from "../Link"
+import { TextLink } from "../Link";
 import { Navbar } from "../Navbar";
 import { Categories } from "../Categories";
 import { MobileToggle } from "../Categories/MobileToggle";
@@ -19,8 +19,8 @@ const footerMessage = [
   "Handmade",
   "Forged in fire",
   "Meticulously designed",
-  "Carefully created"
-]
+  "Carefully created",
+];
 
 export const Layout = ({ children }: LayoutProps) => {
   const {
@@ -51,7 +51,9 @@ export const Layout = ({ children }: LayoutProps) => {
 
       <Container>
         <Footer>
-          © {new Date().getFullYear()}, {footerMessage[Math.floor(Math.random() * footerMessage.length)]} by <TextLink to="https://yordevs.com">Yordevs</TextLink>
+          © {new Date().getFullYear()},{" "}
+          {footerMessage[Math.floor(Math.random() * footerMessage.length)]} by{" "}
+          <TextLink to="https://yordevs.com">Yordevs</TextLink>
         </Footer>
       </Container>
     </div>

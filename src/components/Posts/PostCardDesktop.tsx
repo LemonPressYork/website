@@ -43,10 +43,10 @@ const PostExcerpt = styled(Text, {
   textOverflow: "ellipsis",
   whiteSpace: "normal",
   margin: 0,
-  
+
   "&:hover@": {
-    cursor: "pointer"
-  }
+    cursor: "pointer",
+  },
 });
 
 const DateCategory = styled("div", {

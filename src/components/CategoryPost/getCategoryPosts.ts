@@ -1,33 +1,39 @@
 import { graphql, useStaticQuery } from "gatsby";
 
 type Post = {
-  title: string;
-  excerpt: string;
-  slug: string;
-  featuredImage: { node: { id; sourceUrl; localFile } };
+  node: {
+    title: string;
+    excerpt: string;
+    slug: string;
+    featuredImage: { node: { id; sourceUrl; localFile } };
+    categories: { nodes };
+  };
 };
 
-export const getFeaturedPost = (): Post => {
+export const getCategoryPosts = (): Post[] => {
   const {
     allWpPost: { posts },
   } = useStaticQuery(graphql`
-    query postData {
-      allWpPost(filter: { isSticky: { eq: true } }, sort: { fields: date, order: DESC }, limit: 1) {
+    {
+      allWpPost(sort: { fields: date, order: DESC }, limit: 4) {
         posts: edges {
           node {
             title
-            excerpt
             slug
+            categories {
+              nodes {
+                name
+                link
+              }
+            }
             featuredImage {
               node {
                 id
-                sourceUrl
                 localFile {
-                  id
                   childImageSharp {
+                    id
                     gatsbyImageData(
-                      layout: FULL_WIDTH
-                      height: 480
+                      layout: CONSTRAINED
                       placeholder: BLURRED
                       formats: [AUTO, WEBP, AVIF]
                     )
@@ -41,7 +47,5 @@ export const getFeaturedPost = (): Post => {
     }
   `);
 
-  const { node } = posts[0];
-
-  return node;
+  return posts;
 };

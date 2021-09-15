@@ -23,7 +23,7 @@ export const PostCard = ({ image, title, slug, date, category, categorySlug, exc
           slug={slug}
         />
       ) : (
-      <PostCardMobile
+        <PostCardMobile
           image={image}
           title={title}
           slug={slug}
