@@ -1,7 +1,7 @@
 import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
+import { useStaticQuery, graphql, Link } from "gatsby";
 
-import { globalStyles } from "../../stitches.config";
+import { globalStyles, styled } from "../../stitches.config";
 
 import { Container } from "../Container";
 import { Footer } from "../Footer";
@@ -9,6 +9,7 @@ import { TextLink } from "../Link";
 import { Navbar } from "../Navbar";
 import { Categories } from "../Categories";
 import { MobileToggle } from "../Categories/MobileToggle";
+import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -38,6 +39,14 @@ export const Layout = ({ children }: LayoutProps) => {
     }
   `);
 
+  const SocialLogoHolder = styled("div", {
+    float: "right",
+    display: "flex",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    width: "200px",
+  });
+
   globalStyles();
 
   return (
@@ -54,6 +63,17 @@ export const Layout = ({ children }: LayoutProps) => {
           © {new Date().getFullYear()},{" "}
           {footerMessage[Math.floor(Math.random() * footerMessage.length)]} by{" "}
           <TextLink to="https://yordevs.com">Yordevs</TextLink>
+          <SocialLogoHolder>
+            <TextLink to="https://www.facebook.com/thelemonpress">
+              <FaFacebookF />
+            </TextLink>
+            <TextLink to="https://www.twitter.com/thelemonpress">
+              <FaTwitter />
+            </TextLink>
+            <TextLink to="https://www.instagram.com/thelemonpressyork">
+              <FaInstagram />
+            </TextLink>
+          </SocialLogoHolder>
         </Footer>
       </Container>
     </div>
