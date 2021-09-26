@@ -8,7 +8,6 @@ import { Footer } from "../Footer";
 import { TextLink } from "../Link";
 import { Navbar } from "../Navbar";
 import { Categories } from "../Categories";
-import { MobileToggle } from "../Categories/MobileToggle";
 import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 
 interface LayoutProps {
@@ -22,6 +21,18 @@ const footerMessage = [
   "Meticulously designed",
   "Carefully created",
 ];
+
+const SocialLogoHolder = styled("div", {
+  float: "right",
+  display: "flex",
+  justifyContent: "space-evenly",
+  alignItems: "center",
+  width: "200px",
+});
+
+const Main = styled("main", {
+  margin: "$2 0",
+});
 
 export const Layout = ({ children }: LayoutProps) => {
   const {
@@ -39,14 +50,6 @@ export const Layout = ({ children }: LayoutProps) => {
     }
   `);
 
-  const SocialLogoHolder = styled("div", {
-    float: "right",
-    display: "flex",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    width: "200px",
-  });
-
   globalStyles();
 
   return (
@@ -56,7 +59,7 @@ export const Layout = ({ children }: LayoutProps) => {
         <Categories />
       </header>
 
-      <main>{children}</main>
+      <Main>{children}</Main>
 
       <Container>
         <Footer>

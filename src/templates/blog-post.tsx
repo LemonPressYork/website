@@ -2,21 +2,27 @@ import React from "react";
 import { styled } from "../stitches.config";
 import { Link, graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import parse from "html-react-parser";
 
 import { Bio } from "../components/Bio";
 import { Layout } from "../components/Layout";
 import { SEO } from "../components/SEO";
 import { Container } from "../components/Container";
+import { H1, H2 } from "../components/Heading";
 
-import { calculateReadTime, cleanHTML } from "../utils";
+import { calculateReadTime, cleanHTML, parseHTML } from "../utils";
 
 const Article = styled("article", {
-  gridColumn: "1 / -1",
+  gridColumn: "3 / -3",
 });
 
 const BlogPostNav = styled("nav", {
   gridColumn: "1 / -1",
+});
+
+const PostDetails = styled(H2, {
+  color: "$textLight",
+  fontWeight: "$normal",
+  fontStyle: "italic",
 });
 
 const BlogPostTemplate = ({ data: { previous, next, post } }) => {
@@ -32,21 +38,18 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
       <Container>
         <Article>
           <header>
-            <h1>{parse(post.title)}</h1>
-            <p>{post.date}</p>
-            <p>{calculateReadTime(cleanHTML(post.content))} minute read.</p>
+            <H1>{parseHTML(post.title)}</H1>
+            <PostDetails>
+              {post.date} • {calculateReadTime(cleanHTML(post.content))} minute read
+            </PostDetails>
 
-            {/* if we have a featured image for this post let's display it */}
-            {featuredImage?.image && (
-              <GatsbyImage
-                image={featuredImage.image}
-                alt={featuredImage.alt}
-                style={{ marginBottom: 50 }}
-              />
-            )}
+            <GatsbyImage
+              image={getImage(post.featuredImage.node.localFile)}
+              alt={featuredImage.alt}
+            />
           </header>
 
-          {!!post.content && <section>{parse(post.content)}</section>}
+          {!!post.content && <section>{parseHTML(post.content)}</section>}
 
           <hr />
 
@@ -67,7 +70,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
             <li>
               {previous && (
                 <Link to={previous.uri} rel="prev">
-                  ← {parse(previous.title)}
+                  ← {parseHTML(previous.title)}
                 </Link>
               )}
             </li>
@@ -75,7 +78,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
             <li>
               {next && (
                 <Link to={next.uri} rel="next">
-                  {parse(next.title)} →
+                  {parseHTML(next.title)} →
                 </Link>
               )}
             </li>
