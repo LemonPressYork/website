@@ -29,7 +29,7 @@ const monthNames = [
   "December",
 ];
 
-export const LatestIssue = () => {
+export const LatestIssue = ({ css }) => {
   const isDesktop = useMediaQuery(breakpoints.smUp);
 
   const { title, epoch, documentId, docname } = getLatestIssue();
@@ -38,7 +38,7 @@ export const LatestIssue = () => {
 
   if (isDesktop) {
     return (
-      <Wrapper>
+      <Wrapper style={css}>
         <PrintIssueCard
           title={title}
           date={`${monthNames[date.getMonth()]} ${date.getFullYear()}`}
