@@ -2,6 +2,7 @@ import React from "react";
 import { styled } from "../stitches.config";
 import { Link, graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import parse from "html-react-parser";
 
 import { Bio } from "../components/Bio";
 import { Layout } from "../components/Layout";
@@ -49,7 +50,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
             />
           </header>
 
-          {!!post.content && <section>{parseHTML(post.content)}</section>}
+          {post.content && <section>{parseHTML(post.content)}</section>}
 
           <hr />
 
@@ -70,7 +71,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
             <li>
               {previous && (
                 <Link to={previous.uri} rel="prev">
-                  ← {parseHTML(previous.title)}
+                  ← {parse(previous.title)}
                 </Link>
               )}
             </li>
@@ -78,7 +79,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
             <li>
               {next && (
                 <Link to={next.uri} rel="next">
-                  {parseHTML(next.title)} →
+                  {parse(next.title)} →
                 </Link>
               )}
             </li>
