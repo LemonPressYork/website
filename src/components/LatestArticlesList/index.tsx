@@ -22,7 +22,7 @@ const DetailsHoder = styled("div", {});
 
 const image = css({});
 
-const LatestIssueList = ({ css }) => {
+const LatestArticleList = ({ css }) => {
   const posts = getCategoryPosts();
   return (
     <Holder css={css}>
@@ -47,4 +47,4 @@ const LatestIssueList = ({ css }) => {
   );
 };
 
-export default LatestIssueList;
+export default LatestArticleList;
