@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "../stitches.config";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import parse from "html-react-parser";
 
@@ -9,11 +9,16 @@ import { Layout } from "../components/Layout";
 import { SEO } from "../components/SEO";
 import { Container } from "../components/Container";
 import { H1, H2 } from "../components/Heading";
+import { TextLink } from "../components/Link";
 
 import { calculateReadTime, cleanHTML, parseHTML } from "../utils";
 
 const Article = styled("article", {
   gridColumn: "3 / -3",
+
+  display: "flex",
+  flexDirection: "column",
+  gap: "$1",
 });
 
 const BlogPostNav = styled("nav", {
@@ -52,10 +57,8 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
 
           {post.content && <section>{parseHTML(post.content)}</section>}
 
-          <hr />
-
           <footer>
-            <Bio />
+            <Bio author={post.author.node} />
           </footer>
         </Article>
 
@@ -70,17 +73,17 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
             }}>
             <li>
               {previous && (
-                <Link to={previous.uri} rel="prev">
+                <TextLink to={previous.uri} rel="prev">
                   ← {parse(previous.title)}
-                </Link>
+                </TextLink>
               )}
             </li>
 
             <li>
               {next && (
-                <Link to={next.uri} rel="next">
+                <TextLink to={next.uri} rel="next">
                   {parse(next.title)} →
-                </Link>
+                </TextLink>
               )}
             </li>
           </ul>
@@ -106,6 +109,18 @@ export const pageQuery = graphql`
       content
       title
       date(formatString: "MMMM DD, YYYY")
+
+      author {
+        node {
+          id
+          avatar {
+            url
+          }
+          description
+          firstName
+          lastName
+        }
+      }
 
       featuredImage {
         node {

@@ -7,6 +7,7 @@ interface Props {
   to: string;
   className?: string;
   children: React.ReactNode;
+  rest: any;
 }
 
 const styles = css({
@@ -14,12 +15,12 @@ const styles = css({
   textDecoration: "inherit",
 });
 
-export const UnstyledLink = ({ to, className = "", children }: Props) => {
+export const UnstyledLink = ({ to, className = "", children, ...rest }: Props) => {
   const isInternal = /^\/(?!\/)/.test(to);
 
   if (isInternal)
     return (
-      <Link to={to} className={`unstyled-link ${styles()} ${className}`}>
+      <Link to={to} className={`unstyled-link ${styles()} ${className}`} {...rest}>
         {children}
       </Link>
     );
@@ -29,7 +30,8 @@ export const UnstyledLink = ({ to, className = "", children }: Props) => {
       href={to}
       className={`unstyled-link ${styles()} ${className}`}
       target="_blank"
-      rel="noopener noreferrer">
+      rel="noopener noreferrer"
+      {...rest}>
       {children}
     </a>
   );

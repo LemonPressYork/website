@@ -1,36 +1,47 @@
 import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
+import { styled } from "../../stitches.config";
 
-export const Bio = () => {
-  const { author } = useStaticQuery(graphql`
-    query BioQuery {
-      # if there was more than one user, this would need to be filtered
-      author: wpUser {
-        firstName
-        twitter: name
-        description
-        avatar {
-          url
-        }
-      }
-    }
-  `);
+import { Text } from "../Text";
 
-  const avatarUrl = author?.avatar?.url;
+const Wrapper = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gap: "$1",
+
+  background: "$accent",
+  padding: "$1",
+
+  "@smUp": {
+    flexDirection: "row",
+  },
+});
+
+const ProfilePhoto = styled("img", {
+  width: "100%",
+  height: "100%",
+
+  maxWidth: 150,
+  maxHeight: 150,
+});
+
+export const Bio = ({ author: { avatar, firstName, description } }) => {
+  const avatarUrl = avatar?.url;
 
   return (
-    <div>
-      {avatarUrl && <img alt={author?.firstName || ""} src={avatarUrl} />}
-      {author?.firstName && (
-        <p>
-          Written by <strong>{author.firstName}</strong> {author?.description || null}{" "}
-          {author?.twitter && (
-            <a href={`https://twitter.com/${author?.twitter || ""}`}>
-              You should follow them on Twitter
-            </a>
-          )}
-        </p>
+    <Wrapper>
+      {avatarUrl && <ProfilePhoto alt={firstName || ""} src={avatarUrl} />}
+      {firstName && (
+        <div>
+          <Text color="normal">
+            <i>
+              Written by <b>{firstName}</b>
+            </i>
+          </Text>
+          <Text color="normal" css={{ marginBottom: 0 }}>
+            {description || null}
+          </Text>
+        </div>
       )}
-    </div>
+    </Wrapper>
   );
 };
