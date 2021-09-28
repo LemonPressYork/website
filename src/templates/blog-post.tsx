@@ -23,6 +23,22 @@ const Article = styled("article", {
 
 const BlogPostNav = styled("nav", {
   gridColumn: "1 / -1",
+
+  ul: {
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    flexWrap: "wrap",
+    gap: "$1",
+
+    listStyle: "none",
+    padding: 0,
+
+    "@mdUp": {
+      justifyContent: "space-between",
+      flexDirection: "row",
+    },
+  },
 });
 
 const PostDetails = styled(H2, {
@@ -63,14 +79,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
         </Article>
 
         <BlogPostNav>
-          <ul
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "space-between",
-              listStyle: "none",
-              padding: 0,
-            }}>
+          <ul>
             <li>
               {previous && (
                 <TextLink to={previous.uri} rel="prev">
