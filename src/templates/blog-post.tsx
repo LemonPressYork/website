@@ -53,6 +53,8 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
     alt: post.featuredImage?.node?.alt || "",
   };
 
+  console.log(post.author);
+
   return (
     <Layout>
       <SEO title={post.title} description={post.excerpt} />
