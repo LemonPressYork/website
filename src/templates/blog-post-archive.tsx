@@ -40,15 +40,13 @@ const BlogIndex = ({ data, pageContext: { nextPagePath, previousPagePath } }) =>
     <Layout>
       <SEO title="All posts" />
       <Container style={{ paddingTop: "50px" }}>
-        <H1 style={{ gridColumn: "1/13" }}>Article Archive</H1>
+        <H1 style={{ gridColumn: "1/-1" }}>Article Archive</H1>
         <div
           style={{
             gridColumn: "1 / -1",
           }}>
           {posts.map((post) => {
             const title = post.title;
-
-            console.log(post);
 
             return (
               <>

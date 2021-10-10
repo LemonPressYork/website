@@ -14,6 +14,7 @@ export const { styled, css, global, keyframes, getCssString, theme } = createCss
     space: {
       1: "15px",
       2: "30px",
+      3: "45px",
     },
     fonts: {
       sans: "Source Sans Pro, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
