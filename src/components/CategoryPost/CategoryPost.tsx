@@ -72,7 +72,7 @@ const Body = styled("div", {
 export const CategoryPost = ({ title, to, category, image }) => {
   return (
     <Wrapper>
-      <UnstyledLink to={`/${to}`}>
+      <UnstyledLink to={`/post/${to}`}>
         <GatsbyImage image={image} alt="" className={backgroundImage()} />
         <Body>
           <Title>{title}</Title>
