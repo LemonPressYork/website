@@ -5,6 +5,7 @@ type Post = {
     title: string;
     excerpt: string;
     slug: string;
+    content: string;
     featuredImage: { node: { id; sourceUrl; localFile } };
     categories: { nodes };
   };
@@ -20,6 +21,7 @@ export const getCategoryPosts = (): Post[] => {
           node {
             title
             slug
+            content
             categories {
               nodes {
                 name
