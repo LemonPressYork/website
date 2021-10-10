@@ -16,6 +16,9 @@ exports.createPages = async (gatsbyUtilities) => {
   // Query our posts from the GraphQL server
   const posts = await getPosts(gatsbyUtilities);
 
+  //Query catergories
+  const catergories = await getCategories(gatsbyUtilities);
+
   // If there are no posts in WordPress, don't do anything
   if (!posts.length) {
     return;
@@ -26,6 +29,9 @@ exports.createPages = async (gatsbyUtilities) => {
 
   // And a paginated archive
   await createBlogPostArchive({ posts, gatsbyUtilities });
+
+  // Create category pages
+  await createCatergoryPages({ catergories, gatsbyUtilities });
 };
 
 /**
@@ -122,6 +128,29 @@ async function createBlogPostArchive({ posts, gatsbyUtilities }) {
   );
 }
 
+const createCatergoryPages = async ({ catergories, gatsbyUtilities }) =>
+  Promise.all(
+    catergories.map(({ node: { slug, name, posts } }) =>
+      // createPage is an action passed to createPages
+      // See https://www.gatsbyjs.com/docs/actions#createPage for more info
+      gatsbyUtilities.actions.createPage({
+        // Use the WordPress uri as the Gatsby page path
+        // This is a good idea so that internal links and menus work 👍
+        path: `/category/${slug}`,
+
+        // use the blog post template as the page component
+        component: path.resolve("./src/templates/category-page.tsx"),
+
+        // `context` is available in the template as a prop and
+        // as a variable in GraphQL.
+        context: {
+          name,
+          posts,
+        },
+      }),
+    ),
+  );
+
 /**
  * This function queries Gatsby's GraphQL server and asks for
  * All WordPress blog posts. If there are any GraphQL error it throws an error
@@ -161,4 +190,32 @@ async function getPosts({ graphql, reporter }) {
   }
 
   return graphqlResult.data.allWpPost.edges;
+}
+
+async function getCategories({ graphql, reporter }) {
+  const graphqlResult = await graphql(/* GraphQL */ `
+    query MyQuery {
+      allWpCategory {
+        edges {
+          node {
+            slug
+            name
+            posts {
+              nodes {
+                slug
+                title
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (graphqlResult.errors) {
+    reporter.panicOnBuild("There was an error loading your blog posts", graphqlResult.errors);
+    return;
+  }
+
+  return graphqlResult.data.allWpCategory.edges;
 }
