@@ -204,6 +204,27 @@ async function getCategories({ graphql, reporter }) {
               nodes {
                 slug
                 title
+                excerpt
+                author {
+                  node {
+                    name
+                  }
+                }
+                featuredImage {
+                  node {
+                    id
+                    localFile {
+                      childImageSharp {
+                        id
+                        gatsbyImageData(
+                          layout: CONSTRAINED
+                          placeholder: BLURRED
+                          formats: [AUTO, WEBP, AVIF]
+                        )
+                      }
+                    }
+                  }
+                }
               }
             }
           }
