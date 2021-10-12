@@ -7,7 +7,7 @@ import { getCategoryPosts } from "./getCategoryPosts";
 
 const Grid = styled("div", {
   display: "grid",
-  gridTemplateColumns: "repeat( auto-fit, minmax(250px, 1fr) )",
+  gridTemplateColumns: "repeat( 2, minmax(250px, 1fr) )",
   gridColumnGap: "$1",
   gridRowGap: "$1",
 
@@ -31,7 +31,7 @@ export const CategoryGrid = ({ css }) => {
           <CategoryPost
             title={title}
             to={slug}
-            category={{ name: nodes[0].name, link: nodes[0].link }}
+            category={{ name: nodes[0].name, slug: nodes[0].slug }}
             image={getImage(featuredImage?.node.localFile)}
           />
         ),

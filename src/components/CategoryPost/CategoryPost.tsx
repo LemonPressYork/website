@@ -94,7 +94,7 @@ export const CategoryPost = ({ title, to, category, image }) => {
         <Body>
           <Title>{title}</Title>
           <UnstyledLink to="">
-            <CategoryBubble to={category.link}>{category.name}</CategoryBubble>
+            <CategoryBubble to={`/category/${category.slug}`}>{category.name}</CategoryBubble>
           </UnstyledLink>
         </Body>
       </UnstyledLink>

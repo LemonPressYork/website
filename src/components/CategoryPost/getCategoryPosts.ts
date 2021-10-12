@@ -25,7 +25,7 @@ export const getCategoryPosts = (): Post[] => {
             categories {
               nodes {
                 name
-                link
+                slug
               }
             }
             featuredImage {
