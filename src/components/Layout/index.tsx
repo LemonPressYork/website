@@ -30,9 +30,7 @@ const SocialLogoHolder = styled("div", {
   width: "200px",
 });
 
-const Main = styled("main", {
-  margin: "$2 0",
-});
+const Main = styled("main", {});
 
 export const Layout = ({ children }: LayoutProps) => {
   const {

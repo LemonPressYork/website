@@ -38,7 +38,7 @@ const PrintIssues = ({
 }) => {
   return (
     <Layout>
-      <Container css={{ paddingTop: "$3" }}>
+      <Container css={{ paddingTop: "$1" }}>
         <H1 style={{ gridColumn: "1/-1" }}>Print Issues</H1>
         <Subtitle style={{ gridColumn: "1/-1" }}>
           Checkout all our print issues... digitally
