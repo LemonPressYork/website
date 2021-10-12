@@ -11,12 +11,12 @@ type Post = {
   };
 };
 
-export const getCategoryPosts = (): Post[] => {
+export const getLatestArticles = (): Post[] => {
   const {
     allWpPost: { posts },
   } = useStaticQuery(graphql`
     {
-      allWpPost(sort: { fields: date, order: DESC }, limit: 8) {
+      allWpPost(sort: { fields: date, order: DESC }, limit: 4) {
         posts: edges {
           node {
             title
@@ -49,5 +49,5 @@ export const getCategoryPosts = (): Post[] => {
     }
   `);
 
-  return posts.slice(4);
+  return posts;
 };

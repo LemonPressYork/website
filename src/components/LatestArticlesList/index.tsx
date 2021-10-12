@@ -5,6 +5,7 @@ import { calculateReadTime } from "../../utils";
 import { getCategoryPosts } from "../CategoryPost/getCategoryPosts";
 import { H2, H3 } from "../Heading";
 import { UnstyledLink } from "../Link";
+import { getLatestArticles } from "./getLatestArticles";
 
 const Holder = styled("div", {
   padding: "$2",
@@ -42,7 +43,7 @@ const PostImage = ({ image }) => {
 };
 
 const LatestArticleList = ({ css }) => {
-  const posts = getCategoryPosts();
+  const posts = getLatestArticles();
   return (
     <Holder css={css}>
       <H2>Latest Articles</H2>
