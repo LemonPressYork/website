@@ -50,11 +50,11 @@ const BlogIndex = ({ data, pageContext: { nextPagePath, previousPagePath } }) =>
 
             return (
               <>
-                <List key={post.uri}>
+                <List key={`/post/${post.slug}`}>
                   <article>
                     <header>
                       <h2>
-                        <TextLink to={post.uri}>
+                        <TextLink to={`/post/${post.slug}`}>
                           <span>{parse(title)}</span>
                         </TextLink>
                       </h2>
@@ -97,6 +97,7 @@ export const pageQuery = graphql`
       nodes {
         excerpt
         uri
+        slug
         date(formatString: "MMMM DD, YYYY")
         title
         excerpt
