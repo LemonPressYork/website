@@ -125,7 +125,7 @@ export const pageQuery = graphql`
           avatar {
             url
           }
-          descriptiond
+          description
           firstName
           lastName
         }
