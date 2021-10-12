@@ -1,4 +1,4 @@
-import { getImage, GatsbyImage } from "gatsby-plugin-image";
+import { getImage, GatsbyImage, StaticImage } from "gatsby-plugin-image";
 import React from "react";
 import { css, styled } from "../../stitches.config";
 import { calculateReadTime } from "../../utils";
@@ -22,6 +22,22 @@ const DetailsHoder = styled("div", {});
 
 const image = css({});
 
+const PostImage = ({ image }) => {
+  if (image === undefined) {
+    return (
+      <StaticImage
+        src="../../media/replacement-image.jpg"
+        alt="Preview image for article"
+        style={{ gridColumn: "6/-1" }}
+      />
+    );
+  }
+
+  return (
+    <GatsbyImage image={image} alt="Preview image for article" style={{ gridColumn: "6/-1" }} />
+  );
+};
+
 const LatestArticleList = ({ css }) => {
   const posts = getCategoryPosts();
   return (
@@ -35,12 +51,7 @@ const LatestArticleList = ({ css }) => {
             </H3>
             <p>{calculateReadTime(content)} minute read</p>
           </DetailsHoder>
-          <GatsbyImage
-            style={{ gridColumn: "6/-1" }}
-            image={getImage(featuredImage?.node.localFile)}
-            alt=""
-            className={image()}
-          />
+          <PostImage image={getImage(featuredImage?.node.localFile)} />
         </ArticleHolder>
       ))}
     </Holder>
