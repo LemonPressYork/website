@@ -47,7 +47,7 @@ const LatestArticleList = ({ css }) => {
         <ArticleHolder>
           <DetailsHoder style={{ gridColumn: "1/6" }}>
             <H3>
-              <UnstyledLink to={`/${slug}`}>{title}</UnstyledLink>
+              <UnstyledLink to={`/post/${slug}`}>{title}</UnstyledLink>
             </H3>
             <p>{calculateReadTime(content)} minute read</p>
           </DetailsHoder>

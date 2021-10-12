@@ -45,7 +45,7 @@ const createIndividualBlogPostPages = async ({ posts, gatsbyUtilities }) =>
       gatsbyUtilities.actions.createPage({
         // Use the WordPress uri as the Gatsby page path
         // This is a good idea so that internal links and menus work 👍
-        path: post.slug,
+        path: `/post/${post.slug}`,
 
         // use the blog post template as the page component
         component: path.resolve("./src/templates/blog-post.tsx"),
