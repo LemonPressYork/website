@@ -14,13 +14,12 @@ const ArticleHolder = styled("div", {
   marginTop: "$1",
   marginBottom: "$1",
   display: "grid",
+  gridColumnGap: "$1",
   gridTemplateColumns: "repeat(8, 1fr)",
   alignItems: "center",
 });
 
 const DetailsHoder = styled("div", {});
-
-const image = css({});
 
 const PostImage = ({ image }) => {
   if (image === undefined) {
@@ -28,13 +27,17 @@ const PostImage = ({ image }) => {
       <StaticImage
         src="../../media/replacement-image.jpg"
         alt="Preview image for article"
-        style={{ gridColumn: "6/-1" }}
+        style={{ gridColumn: "6/-1", minHeight: "105px", maxHeight: "105px" }}
       />
     );
   }
 
   return (
-    <GatsbyImage image={image} alt="Preview image for article" style={{ gridColumn: "6/-1" }} />
+    <GatsbyImage
+      image={image}
+      alt="Preview image for article"
+      style={{ gridColumn: "6/-1", minHeight: "105px", maxHeight: "105px" }}
+    />
   );
 };
 
