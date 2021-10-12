@@ -82,7 +82,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
           <ul>
             <li>
               {previous && (
-                <TextLink to={previous.uri} rel="prev">
+                <TextLink to={`/post${previous.uri}`} rel="prev">
                   ← {parse(previous.title)}
                 </TextLink>
               )}
@@ -90,7 +90,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
 
             <li>
               {next && (
-                <TextLink to={next.uri} rel="next">
+                <TextLink to={`/post${next.uri}`} rel="next">
                   {parse(next.title)} →
                 </TextLink>
               )}
@@ -125,7 +125,7 @@ export const pageQuery = graphql`
           avatar {
             url
           }
-          description
+          descriptiond
           firstName
           lastName
         }

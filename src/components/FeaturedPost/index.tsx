@@ -80,7 +80,7 @@ export const FeaturedPost = () => {
 
   return (
     <Wrapper>
-      <UnstyledLink to={`/${slug}`}>
+      <UnstyledLink to={`/post/${slug}`}>
         <GatsbyImage image={image} alt="" className={featuredImageCSS()} />
         <Body>
           <Content>
