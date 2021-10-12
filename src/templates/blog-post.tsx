@@ -90,19 +90,11 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
           <ul>
             <li>
               {previous && (
-                <TextLink to={`/post/${previous.slug}`} rel="prev">
-                  ← {parse(previous.title)}
-                </TextLink>
+                <TextLink to={`/post/${previous.slug}`}>← {parse(previous.title)}</TextLink>
               )}
             </li>
 
-            <li>
-              {next && (
-                <TextLink to={`/post/${next.slug}`} rel="next">
-                  {parse(next.title)} →
-                </TextLink>
-              )}
-            </li>
+            <li>{next && <TextLink to={`/post/${next.slug}`}>{parse(next.title)} →</TextLink>}</li>
           </ul>
         </BlogPostNav>
       </Container>
