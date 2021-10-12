@@ -10,7 +10,7 @@ import { useMediaQuery } from "../hooks/useMediaQuery";
 import { breakpoints, calculateReadTime, parseHTML, removeExcerptLink } from "../utils";
 import { getCategoryPreviews } from "../utils/getCategoryPreviews";
 import { styled } from "../stitches.config";
-import { H2, H3 } from "../components/Heading";
+import { H2 } from "../components/Heading";
 import { getImage, GatsbyImage } from "gatsby-plugin-image";
 import { UnstyledLink } from "../components/Link";
 
