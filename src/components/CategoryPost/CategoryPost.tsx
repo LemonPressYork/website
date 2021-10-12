@@ -1,5 +1,5 @@
 import React from "react";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
 import { styled, css } from "../../stitches.config";
 
 import { Text } from "../Text";
@@ -69,11 +69,27 @@ const Body = styled("div", {
   },
 });
 
+const PostImage = ({ image }) => {
+  if (image === undefined) {
+    return (
+      <StaticImage
+        src="../../media/replacement-image.jpg"
+        alt="Preview image for article"
+        className={backgroundImage()}
+      />
+    );
+  }
+
+  return (
+    <GatsbyImage image={image} alt="Preview image for article" className={backgroundImage()} />
+  );
+};
+
 export const CategoryPost = ({ title, to, category, image }) => {
   return (
     <Wrapper>
       <UnstyledLink to={`/${to}`}>
-        <GatsbyImage image={image} alt="" className={backgroundImage()} />
+        <PostImage image={image} />
         <Body>
           <Title>{title}</Title>
           <UnstyledLink to="">
