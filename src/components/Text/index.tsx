@@ -5,9 +5,10 @@ export const Text = styled("p", {
   fontSize: "$2",
   fontWeight: "$normal",
 
-  color: "$textLight",
-
+  margin: 0,
   marginBottom: "$1",
+
+  lineHeight: 1.4,
 
   variants: {
     color: {
@@ -18,5 +19,9 @@ export const Text = styled("p", {
         color: "$textLight",
       },
     },
+  },
+
+  defaultVariants: {
+    color: "light",
   },
 });
