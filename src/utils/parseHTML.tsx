@@ -17,8 +17,6 @@ const mappings = {
 
 const options = {
   replace: (domNode) => {
-    console.log(domNode);
-
     const props = domNode.attribs && attributesToProps(domNode.attribs);
 
     if (!mappings[domNode.name]) {
