@@ -106,7 +106,7 @@ const BlogPostTemplate = ({ pageContext: { name, posts } }) => {
             {posts.nodes.slice(1).map(({ slug, title, author, featuredImage }) => {
               return (
                 <PostPreview>
-                  <UnstyledLink to={`/${slug}`}>
+                  <UnstyledLink to={`/post/${slug}`}>
                     {displayListImage(featuredImage)}
                     <PostInfo>
                       <PostTitle style={{ gridColumn: "1/13" }}>{title}</PostTitle>

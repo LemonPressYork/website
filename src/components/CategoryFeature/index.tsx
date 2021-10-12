@@ -97,7 +97,7 @@ export const CategoryFeature = ({ title, excerpt, slug, featuredImage }) => {
 
   return (
     <Wrapper style={{ gridColumn: "1/-1" }}>
-      <UnstyledLink to={`/${slug}`}>
+      <UnstyledLink to={`/post/${slug}`}>
         {displayImage()}
         <Body>
           <Content>

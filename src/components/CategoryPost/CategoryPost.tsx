@@ -89,7 +89,7 @@ const PostImage = ({ image }) => {
 export const CategoryPost = ({ title, to, category, image }) => {
   return (
     <Wrapper>
-      <UnstyledLink to={`/${to}`}>
+      <UnstyledLink to={`/post/${to}`}>
         <PostImage image={image} />
         <Body>
           <Title>{title}</Title>
