@@ -53,7 +53,7 @@ const PostTitle = styled(H2, {
   color: "#fff",
 });
 
-const PostAuthor = styled("span", {
+const PostAuthor = styled("p", {
   color: "rgba(255,255,255,0.8)",
   padding: "2px",
 });
@@ -110,9 +110,7 @@ const BlogPostTemplate = ({ pageContext: { name, posts } }) => {
                     {displayListImage(featuredImage)}
                     <PostInfo>
                       <PostTitle style={{ gridColumn: "1/13" }}>{title}</PostTitle>
-                      <p>
-                        <PostAuthor>{author.node.name}</PostAuthor>
-                      </p>
+                      <PostAuthor>{author.node.name}</PostAuthor>
                     </PostInfo>
                   </UnstyledLink>
                 </PostPreview>
