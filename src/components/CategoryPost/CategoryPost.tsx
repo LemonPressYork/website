@@ -12,6 +12,7 @@ const Wrapper = styled("div", {
   backgroundColor: "$text",
 
   minHeight: 250,
+  maxHeight: 250,
 });
 
 const CategoryBubble = styled(UnstyledLink, {
