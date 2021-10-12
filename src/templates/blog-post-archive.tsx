@@ -32,7 +32,7 @@ const BlogIndex = ({ data, pageContext: { nextPagePath, previousPagePath } }) =>
               <article>
                 <header>
                   <h2>
-                    <Link to={post.uri}>
+                    <Link to={`/post${post.uri}`}>
                       <span>{parse(title)}</span>
                     </Link>
                   </h2>
