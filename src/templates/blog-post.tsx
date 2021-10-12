@@ -48,11 +48,6 @@ const PostDetails = styled(H2, {
 });
 
 const BlogPostTemplate = ({ data: { previous, next, post } }) => {
-  const featuredImage = {
-    image: getImage(post.featuredImage),
-    alt: post.featuredImage?.node?.alt || "",
-  };
-
   const displayFeaturedImage = () => {
     console.log(post);
     if (post.featuredImage) {
