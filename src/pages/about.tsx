@@ -6,7 +6,7 @@ import { Layout } from "../components/Layout";
 const About = () => {
   return (
     <Layout>
-      <Container style={{ paddingTop: "50px" }}>
+      <Container css={{ paddingTop: "$1" }}>
         <H1 style={{ gridColumn: "1/13" }}>About The Lemon Press</H1>
         <p style={{ gridColumn: "1/8", display: "flex", alignItems: "center" }}>
           The Lemon Press is one of only a handful of university satire publications in the U.K.,

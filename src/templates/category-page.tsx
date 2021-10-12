@@ -83,7 +83,7 @@ const BlogPostTemplate = ({ pageContext: { name, posts } }) => {
   if (posts.nodes.length === 0) {
     return (
       <Layout>
-        <Container>
+        <Container css={{ paddingTop: "$1" }}>
           <H1 style={{ gridColumn: "1/13" }}>{name}</H1>
           <p style={{ gridColumn: "1/13" }}>
             There are no articles for this category yet, we really should right some
@@ -94,7 +94,7 @@ const BlogPostTemplate = ({ pageContext: { name, posts } }) => {
   } else {
     return (
       <Layout>
-        <Container>
+        <Container css={{ paddingTop: "$1" }}>
           <H1 style={{ gridColumn: "1/-1" }}>{name}</H1>
           <CategoryFeature
             slug={posts.nodes[0].slug}

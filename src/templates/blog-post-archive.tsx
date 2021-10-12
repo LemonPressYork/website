@@ -7,7 +7,7 @@ import { SEO } from "../components/SEO";
 import { Container } from "../components/Container";
 import { TextLink, UnstyledLink } from "../components/Link";
 import { styled } from "../stitches.config";
-import { H1 } from "../components/Heading";
+import { H1, H3 } from "../components/Heading";
 
 const List = styled("div", {});
 
@@ -39,8 +39,12 @@ const BlogIndex = ({ data, pageContext: { nextPagePath, previousPagePath } }) =>
   return (
     <Layout>
       <SEO title="All posts" />
-      <Container style={{ paddingTop: "50px" }}>
+      <Container css={{ paddingTop: "$1" }}>
         <H1 style={{ gridColumn: "1/-1" }}>Article Archive</H1>
+        <H3 style={{ gridColumn: "1/-1", fontWeight: "normal" }}>
+          Here's all the articles we've ever uploaded all in one place, we can't decide if this is a
+          good or bad thing
+        </H3>
         <div
           style={{
             gridColumn: "1 / -1",
