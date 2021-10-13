@@ -71,7 +71,9 @@ const Home = () => {
           <CategoryGrid css={{ gridColumn: "1/8", gridRow: "1/4" }} />
           <LatestArticleList css={{ gridColumn: "8/-1", gridRow: "1/8" }} />
           <CategoryPreview css={{ gridColumn: "1/10" }}>
-            <CategoryName>{first.node.name}</CategoryName>
+            <UnstyledLink to={`/category/${first.node.slug}`}>
+              <CategoryName>{first.node.name}</CategoryName>
+            </UnstyledLink>
             {first.node.posts.nodes.slice(0, 2).map(
               ({
                 slug,
@@ -127,7 +129,9 @@ const Home = () => {
             if (node.posts.nodes.length > 0) {
               return (
                 <CategoryPreview css={{ gridColumn: "1/-1" }}>
-                  <CategoryName>{node.name}</CategoryName>
+                  <UnstyledLink to={`/category/${node.slug}`}>
+                    <CategoryName>{node.name}</CategoryName>
+                  </UnstyledLink>
                   {node.posts.nodes.slice(0, 2).map(
                     ({
                       slug,
@@ -196,7 +200,7 @@ const Home = () => {
             css={{ gridColumn: "1/-1", width: "100%", display: "flex", justifyContent: "center" }}
           />
           <CategoryPreview css={{ gridColumn: "1/-1" }}>
-            <UnstyledLink to={}>
+            <UnstyledLink to={`/category/${first.node.slug}`}>
               <CategoryName>{first.node.name}</CategoryName>
             </UnstyledLink>
             {first.node.posts.nodes.slice(0, 2).map(
@@ -228,7 +232,9 @@ const Home = () => {
             if (node.posts.nodes.length > 0) {
               return (
                 <CategoryPreview css={{ gridColumn: "1/-1" }}>
-                  <CategoryName>{node.name}</CategoryName>
+                  <UnstyledLink to={`/category/${node.slug}`}>
+                    <CategoryName>{node.name}</CategoryName>
+                  </UnstyledLink>
                   {node.posts.nodes.slice(0, 2).map(
                     ({
                       slug,
