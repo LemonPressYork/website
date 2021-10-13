@@ -196,7 +196,9 @@ const Home = () => {
             css={{ gridColumn: "1/-1", width: "100%", display: "flex", justifyContent: "center" }}
           />
           <CategoryPreview css={{ gridColumn: "1/-1" }}>
-            <CategoryName>{first.node.name}</CategoryName>
+            <UnstyledLink to={}>
+              <CategoryName>{first.node.name}</CategoryName>
+            </UnstyledLink>
             {first.node.posts.nodes.slice(0, 2).map(
               ({
                 slug,
