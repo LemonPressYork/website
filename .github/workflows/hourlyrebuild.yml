@@ -2,7 +2,7 @@ name: Hourly Rebuild
 
 on:
   schedule:
-    - cron: '0 0,8,10,12,14,16,18,20,22 * * *'
+    - cron: '0,8,10,12,14,16,18,20,22 * * *'
 
 jobs:
   build:
