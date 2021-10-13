@@ -1,60 +1,272 @@
-import { Link } from "gatsby";
 import React from "react";
-import { Container } from "../components/Container";
 
+import { Container } from "../components/Container";
 import { Layout } from "../components/Layout";
-import { H1, H2, H3 } from "../components/Heading";
-import { Text } from "../components/Text";
-import { TextLink } from "../components/Link/TextLink";
-import { PostCard } from "../components/Posts";
-import { PostDetails } from "../components/Posts/PostDetails";
 import { FeaturedPost } from "../components/FeaturedPost";
+import { CategoryGrid } from "../components/CategoryPost";
 import { LatestIssue } from "../components/LatestIssue";
+import LatestArticleList from "../components/LatestArticlesList";
+import { useMediaQuery } from "../hooks/useMediaQuery";
+import { breakpoints, calculateReadTime, parseHTML, removeExcerptLink } from "../utils";
+import { getCategoryPreviews } from "../utils/getCategoryPreviews";
+import { styled } from "../stitches.config";
+import { H2 } from "../components/Heading";
+import { getImage, GatsbyImage } from "gatsby-plugin-image";
+import { UnstyledLink } from "../components/Link";
+import { SEO } from "../components/SEO";
+
+const CategoryPreview = styled("div", {
+  padding: "$1",
+});
+
+const PreviewWrapper = styled("div", {
+  display: "grid",
+  gridColumnGap: "$1",
+  gridTemplateColumns: "auto 200px",
+});
+
+const CategoryName = styled(H2, {
+  color: "$textLight",
+  fontSize: "2em",
+});
+
+const Seperator = styled("div", {
+  width: "100%",
+  height: "2px",
+  backgroundColor: "black",
+  marginBottom: "$1",
+});
+
+const previewImageStyle = {
+  minHeight: "150px",
+  maxHeight: "150px",
+  justifySelf: "center",
+  alignSelf: "center",
+};
 
 const Home = () => {
-  return (
-    <Layout>
-      <FeaturedPost />
-      <LatestIssue />
-      <Container>
-        <div>
-          <Text>
-            Hello, world! This is some text here. It can be <b>bold</b>, <i>italic</i>, even{" "}
-            <b>
-              <i>both!</i>
-            </b>
-          </Text>
-          <Text color="light">And here is some light text, which is a different variant.</Text>
-          <Link to="/archive">See our other posts.</Link>
-          <H1>These</H1>
-          <H2>Are</H2>
-          <H3>Headings</H3>
-          <Text>
-            This is an external <TextLink to="https://google.com">link.</TextLink>
-          </Text>
-          <Text>
-            This is an internal <TextLink to="/404">link.</TextLink>
-          </Text>
-          <PostCard
-            image="https://miro.medium.com/fit/c/262/262/0*z8Y-S5VRjD2B2dPx.jpg"
-            title="First Post"
-            slug="first-post"
-            date="28 Aug"
-            category="Test"
-            categorySlug="test"
-            excerpt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  const isDesktop = useMediaQuery(breakpoints.landingMid);
+  const { first, remaining } = getCategoryPreviews();
+
+  console.log(remaining);
+
+  const displayImage = (featuredImage) => {
+    if (featuredImage) {
+      return (
+        <GatsbyImage
+          image={getImage(featuredImage.node.localFile)}
+          alt=""
+          style={previewImageStyle}
+        />
+      );
+    }
+  };
+
+  if (isDesktop) {
+    return (
+      <Layout>
+        <SEO title="Home" />
+        <FeaturedPost />
+        <Container>
+          <CategoryGrid css={{ gridColumn: "1/8", gridRow: "1/4" }} />
+          <LatestArticleList css={{ gridColumn: "8/-1", gridRow: "1/8" }} />
+          <CategoryPreview css={{ gridColumn: "1/10" }}>
+            <UnstyledLink to={`/category/${first.node.slug}`}>
+              <CategoryName>{first.node.name}</CategoryName>
+            </UnstyledLink>
+            {first.node.posts.nodes.slice(0, 2).map(
+              ({
+                slug,
+                title,
+                content,
+                excerpt,
+                featuredImage,
+                author: {
+                  node: { name },
+                },
+              }) => {
+                if (featuredImage) {
+                  return (
+                    <>
+                      <PreviewWrapper>
+                        <div>
+                          <UnstyledLink to={`/post/${slug}`}>
+                            <H2>{title}</H2>
+                          </UnstyledLink>
+                          <p>
+                            <b>{name}</b> | {calculateReadTime(content)} minute read
+                          </p>
+                          {parseHTML(removeExcerptLink(excerpt))}
+                        </div>
+                        <UnstyledLink to={`/post/${slug}`}>
+                          {displayImage(featuredImage)}
+                        </UnstyledLink>
+                      </PreviewWrapper>
+                      <Seperator />
+                    </>
+                  );
+                } else {
+                  return (
+                    <>
+                      <div>
+                        <UnstyledLink to={`/post/${slug}`}>
+                          <H2>{title}</H2>
+                        </UnstyledLink>
+                        <p>
+                          <b>{name}</b> | {calculateReadTime(content)} minute read
+                        </p>
+                        {parseHTML(removeExcerptLink(excerpt))}
+                      </div>
+                      <Seperator />
+                    </>
+                  );
+                }
+              },
+            )}
+          </CategoryPreview>
+          <LatestIssue css={{ gridColumn: "10/-1" }} />
+          {remaining.map(({ node }) => {
+            if (node.posts.nodes.length > 0) {
+              return (
+                <CategoryPreview css={{ gridColumn: "1/-1" }}>
+                  <UnstyledLink to={`/category/${node.slug}`}>
+                    <CategoryName>{node.name}</CategoryName>
+                  </UnstyledLink>
+                  {node.posts.nodes.slice(0, 2).map(
+                    ({
+                      slug,
+                      title,
+                      content,
+                      excerpt,
+                      featuredImage,
+                      author: {
+                        node: { name },
+                      },
+                    }) => {
+                      if (featuredImage) {
+                        return (
+                          <>
+                            <PreviewWrapper>
+                              <div>
+                                <UnstyledLink to={`/post/${slug}`}>
+                                  <H2>{title}</H2>
+                                </UnstyledLink>
+                                <p>
+                                  <b>{name}</b> | {calculateReadTime(content)} minute read
+                                </p>
+                                {parseHTML(removeExcerptLink(excerpt))}
+                              </div>
+                              <UnstyledLink to={`/post/${slug}`}>
+                                {displayImage(featuredImage)}
+                              </UnstyledLink>
+                            </PreviewWrapper>
+                            <Seperator />
+                          </>
+                        );
+                      } else {
+                        return (
+                          <>
+                            <div>
+                              <UnstyledLink to={`/post/${slug}`}>
+                                <H2>{title}</H2>
+                              </UnstyledLink>
+                              <p>
+                                <b>{name}</b> | {calculateReadTime(content)} minute read
+                              </p>
+                              {parseHTML(removeExcerptLink(excerpt))}
+                            </div>
+                            <Seperator />
+                          </>
+                        );
+                      }
+                    },
+                  )}
+                </CategoryPreview>
+              );
+            }
+          })}
+        </Container>
+      </Layout>
+    );
+  } else {
+    return (
+      <Layout>
+        <SEO title="Home" />
+        <FeaturedPost />
+        <Container>
+          <CategoryGrid css={{ gridColumn: "1/-1" }} />
+          <LatestArticleList css={{ gridColumn: "1/-1" }} />
+          <LatestIssue
+            css={{ gridColumn: "1/-1", width: "100%", display: "flex", justifyContent: "center" }}
           />
-          <PostDetails
-            name="Harry Wickham"
-            date="12 June"
-            image="https://miro.medium.com/fit/c/262/262/0*z8Y-S5VRjD2B2dPx.jpg"
-            length="12"
-            nameslug="harry-wickham"
-          />
-        </div>
-      </Container>
-    </Layout>
-  );
+          <CategoryPreview css={{ gridColumn: "1/-1" }}>
+            <UnstyledLink to={`/category/${first.node.slug}`}>
+              <CategoryName>{first.node.name}</CategoryName>
+            </UnstyledLink>
+            {first.node.posts.nodes.slice(0, 2).map(
+              ({
+                slug,
+                title,
+                content,
+                excerpt,
+                author: {
+                  node: { name },
+                },
+              }) => {
+                return (
+                  <>
+                    <UnstyledLink to={`/post/${slug}`}>
+                      <H2>{title}</H2>
+                    </UnstyledLink>
+                    <p>
+                      <b>{name}</b> | {calculateReadTime(content)} minute read
+                    </p>
+                    {parseHTML(removeExcerptLink(excerpt))}
+                    <Seperator />
+                  </>
+                );
+              },
+            )}
+          </CategoryPreview>
+          {remaining.map(({ node }) => {
+            if (node.posts.nodes.length > 0) {
+              return (
+                <CategoryPreview css={{ gridColumn: "1/-1" }}>
+                  <UnstyledLink to={`/category/${node.slug}`}>
+                    <CategoryName>{node.name}</CategoryName>
+                  </UnstyledLink>
+                  {node.posts.nodes.slice(0, 2).map(
+                    ({
+                      slug,
+                      title,
+                      content,
+                      excerpt,
+                      author: {
+                        node: { name },
+                      },
+                    }) => {
+                      return (
+                        <>
+                          <UnstyledLink to={`/post/${slug}`}>
+                            <H2>{title}</H2>
+                          </UnstyledLink>
+                          <p>
+                            <b>{name}</b> | {calculateReadTime(content)} minute read
+                          </p>
+                          {parseHTML(removeExcerptLink(excerpt))}
+                          <Seperator />
+                        </>
+                      );
+                    },
+                  )}
+                </CategoryPreview>
+              );
+            }
+          })}
+        </Container>
+      </Layout>
+    );
+  }
 };
 
 export default Home;

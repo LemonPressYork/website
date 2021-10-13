@@ -5,10 +5,8 @@ import { Layout } from "../components/Layout";
 import { PrintIssueCard } from "../components/PrintIssues/PrintIssueCard";
 import { styled } from "../stitches.config";
 import { H1, H3 } from "../components/Heading";
-
-const Wrapper = styled("div", {
-  padding: "50px",
-});
+import { Container } from "../components/Container";
+import { SEO } from "../components/SEO";
 
 const IssuesHolder = styled("div", {
   display: "grid",
@@ -41,10 +39,13 @@ const PrintIssues = ({
 }) => {
   return (
     <Layout>
-      <Wrapper>
-        <H1>Print Issues</H1>
-        <Subtitle>Checkout all our print issues... digitally</Subtitle>
-        <IssuesHolder>
+      <SEO title="Print Issues" />
+      <Container css={{ paddingTop: "$1" }}>
+        <H1 style={{ gridColumn: "1/-1" }}>Print Issues</H1>
+        <Subtitle style={{ gridColumn: "1/-1" }}>
+          Checkout all our print issues... digitally
+        </Subtitle>
+        <IssuesHolder style={{ gridColumn: "1/-1" }}>
           {edges.map((issue) => {
             const date = new Date(issue.node.epoch);
             return (
@@ -56,7 +57,7 @@ const PrintIssues = ({
             );
           })}
         </IssuesHolder>
-      </Wrapper>
+      </Container>
     </Layout>
   );
 };

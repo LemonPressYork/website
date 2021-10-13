@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "../stitches.config";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import parse from "html-react-parser";
 
@@ -8,21 +8,56 @@ import { Bio } from "../components/Bio";
 import { Layout } from "../components/Layout";
 import { SEO } from "../components/SEO";
 import { Container } from "../components/Container";
+import { H1, H2 } from "../components/Heading";
+import { TextLink } from "../components/Link";
 
-import { calculateReadTime, cleanHTML } from "../utils";
+import { calculateReadTime, cleanHTML, parseHTML } from "../utils";
 
 const Article = styled("article", {
-  gridColumn: "1 / -1",
+  gridColumn: "3 / -3",
+
+  display: "flex",
+  flexDirection: "column",
+  gap: "$1",
 });
 
 const BlogPostNav = styled("nav", {
   gridColumn: "1 / -1",
+
+  ul: {
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    flexWrap: "wrap",
+    gap: "$1",
+
+    listStyle: "none",
+    padding: 0,
+
+    "@mdUp": {
+      justifyContent: "space-between",
+      flexDirection: "row",
+    },
+  },
+});
+
+const PostDetails = styled(H2, {
+  color: "$textLight",
+  fontWeight: "$normal",
+  fontStyle: "italic",
 });
 
 const BlogPostTemplate = ({ data: { previous, next, post } }) => {
-  const featuredImage = {
-    image: getImage(post.featuredImage),
-    alt: post.featuredImage?.node?.alt || "",
+  const displayFeaturedImage = () => {
+    console.log(post);
+    if (post.featuredImage) {
+      return (
+        <GatsbyImage
+          image={getImage(post.featuredImage.node.localFile)}
+          alt={post.featuredImage.node.altText}
+        />
+      );
+    }
   };
 
   return (
@@ -32,53 +67,29 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
       <Container>
         <Article>
           <header>
-            <h1>{parse(post.title)}</h1>
-            <p>{post.date}</p>
-            <p>{calculateReadTime(cleanHTML(post.content))} minute read.</p>
-
-            {/* if we have a featured image for this post let's display it */}
-            {featuredImage?.image && (
-              <GatsbyImage
-                image={featuredImage.image}
-                alt={featuredImage.alt}
-                style={{ marginBottom: 50 }}
-              />
-            )}
+            <H1>{parseHTML(post.title)}</H1>
+            <PostDetails>
+              {post.date} • {calculateReadTime(cleanHTML(post.content))} minute read
+            </PostDetails>
+            {displayFeaturedImage()}
           </header>
 
-          {!!post.content && <section>{parse(post.content)}</section>}
-
-          <hr />
+          {post.content && <section>{parseHTML(post.content)}</section>}
 
           <footer>
-            <Bio />
+            <Bio author={post.author.node} />
           </footer>
         </Article>
 
         <BlogPostNav>
-          <ul
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "space-between",
-              listStyle: "none",
-              padding: 0,
-            }}>
+          <ul>
             <li>
               {previous && (
-                <Link to={previous.uri} rel="prev">
-                  ← {parse(previous.title)}
-                </Link>
+                <TextLink to={`/post/${previous.slug}`}>← {parse(previous.title)}</TextLink>
               )}
             </li>
 
-            <li>
-              {next && (
-                <Link to={next.uri} rel="next">
-                  {parse(next.title)} →
-                </Link>
-              )}
-            </li>
+            <li>{next && <TextLink to={`/post/${next.slug}`}>{parse(next.title)} →</TextLink>}</li>
           </ul>
         </BlogPostNav>
       </Container>
@@ -103,6 +114,18 @@ export const pageQuery = graphql`
       title
       date(formatString: "MMMM DD, YYYY")
 
+      author {
+        node {
+          id
+          avatar {
+            url
+          }
+          description
+          firstName
+          lastName
+        }
+      }
+
       featuredImage {
         node {
           altText
@@ -122,13 +145,13 @@ export const pageQuery = graphql`
 
     # this gets us the previous post by id (if it exists)
     previous: wpPost(id: { eq: $previousPostId }) {
-      uri
+      slug
       title
     }
 
     # this gets us the next post by id (if it exists)
     next: wpPost(id: { eq: $nextPostId }) {
-      uri
+      slug
       title
     }
   }

@@ -1,10 +1,27 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 import parse from "html-react-parser";
-
 import { Bio } from "../components/Bio";
 import { Layout } from "../components/Layout";
 import { SEO } from "../components/SEO";
+import { Container } from "../components/Container";
+import { TextLink, UnstyledLink } from "../components/Link";
+import { styled } from "../stitches.config";
+import { H1, H3 } from "../components/Heading";
+
+const List = styled("div", {});
+
+const Seperator = styled("div", {
+  width: "100%",
+  height: "2px",
+  backgroundColor: "black",
+});
+
+const AuthorLink = styled(UnstyledLink, {
+  "&:hover, &:active": {
+    color: "$text",
+  },
+});
 
 const BlogIndex = ({ data, pageContext: { nextPagePath, previousPagePath } }) => {
   const posts = data.allWpPost.nodes;
@@ -22,36 +39,56 @@ const BlogIndex = ({ data, pageContext: { nextPagePath, previousPagePath } }) =>
   return (
     <Layout>
       <SEO title="All posts" />
-      <Bio />
-      <ol>
-        {posts.map((post) => {
-          const title = post.title;
+      <Container css={{ paddingTop: "$1" }}>
+        <H1 style={{ gridColumn: "1/-1" }}>Article Archive</H1>
+        <H3 style={{ gridColumn: "1/-1", fontWeight: "normal" }}>
+          Here's all the articles we've ever uploaded all in one place, we can't decide if this is a
+          good or bad thing
+        </H3>
+        <div
+          style={{
+            gridColumn: "1 / -1",
+          }}>
+          {posts.map((post) => {
+            const title = post.title;
 
-          return (
-            <li key={post.uri}>
-              <article>
-                <header>
-                  <h2>
-                    <Link to={post.uri}>
-                      <span>{parse(title)}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.date}</small>
-                </header>
-                <section>{parse(post.excerpt)}</section>
-              </article>
-            </li>
-          );
-        })}
-      </ol>
+            return (
+              <>
+                <List key={`/post/${post.slug}`}>
+                  <article>
+                    <header>
+                      <h2>
+                        <TextLink to={`/post/${post.slug}`}>
+                          <span>{parse(title)}</span>
+                        </TextLink>
+                      </h2>
+                      <small>
+                        {post.date} |{" "}
+                        <b>
+                          <AuthorLink to={`/author/${post.author.node.name}`}>
+                            {" "}
+                            {post.author.node.name}{" "}
+                          </AuthorLink>
+                        </b>
+                      </small>
+                    </header>
+                    <section>{parse(post.excerpt)}</section>
+                  </article>
+                </List>
+                <Seperator />
+              </>
+            );
+          })}
+        </div>
 
-      {previousPagePath && (
-        <>
-          <Link to={previousPagePath}>Previous page</Link>
-          <br />
-        </>
-      )}
-      {nextPagePath && <Link to={nextPagePath}>Next page</Link>}
+        {previousPagePath && (
+          <>
+            <TextLink to={previousPagePath}>Previous page</TextLink>
+            <br />
+          </>
+        )}
+        {nextPagePath && <TextLink to={nextPagePath}>Next page</TextLink>}
+      </Container>
     </Layout>
   );
 };
@@ -64,9 +101,15 @@ export const pageQuery = graphql`
       nodes {
         excerpt
         uri
+        slug
         date(formatString: "MMMM DD, YYYY")
         title
         excerpt
+        author {
+          node {
+            name
+          }
+        }
       }
     }
   }

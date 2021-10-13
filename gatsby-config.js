@@ -27,7 +27,7 @@ module.exports = {
       resolve: "gatsby-source-wordpress",
       options: {
         // the only required plugin option for WordPress is the GraphQL url.
-        url: process.env.WPGRAPHQL_URL || "http://lemonpress.yordevs.com/index.php?graphql",
+        url: process.env.WPGRAPHQL_URL || "http://wp.thelemonpress.co.uk/index.php?graphql",
       },
     },
 
@@ -63,7 +63,7 @@ module.exports = {
         background_color: "#ffffff",
         theme_color: "#663399",
         display: "minimal-ui",
-        icon: "content/assets/gatsby-icon.png",
+        icon: "content/assets/lplogo.png",
       },
     },
 
@@ -81,6 +81,9 @@ module.exports = {
         isTSX: true,
         allExtensions: true,
       },
+    },
+    {
+      resolve: "gatsby-plugin-image",
     },
     {
       resolve: "gatsby-source-custom-api",

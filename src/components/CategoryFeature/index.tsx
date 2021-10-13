@@ -1,5 +1,5 @@
 import React from "react";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
 import parse from "html-react-parser";
 import { styled, css } from "../../stitches.config";
 
@@ -8,7 +8,6 @@ import { Container } from "../Container";
 import { H1 } from "../Heading";
 
 import { UnstyledLink } from "../Link/";
-import { getFeaturedPost } from "./getFeaturedPost";
 import { removeExcerptLink } from "../../utils";
 
 const Wrapper = styled("div", {
@@ -74,15 +73,32 @@ const Excerpt = styled(Text, {
   margin: 0,
 });
 
-export const FeaturedPost = () => {
-  const { title, excerpt, slug, featuredImage } = getFeaturedPost();
+export const CategoryFeature = ({ title, excerpt, slug, featuredImage }) => {
+  const displayImage = () => {
+    if (featuredImage === null) {
+      return (
+        <StaticImage
+          src="../../media/replacement-image.jpg"
+          alt="Preview image for article"
+          className={featuredImageCSS()}
+        />
+      );
+    }
+    return (
+      <GatsbyImage
+        image={getImage(featuredImage.node.localFile)}
+        alt=""
+        className={featuredImageCSS()}
+      />
+    );
+  };
 
-  const image = getImage(featuredImage.node.localFile);
+  console.log(excerpt);
 
   return (
-    <Wrapper>
+    <Wrapper style={{ gridColumn: "1/-1" }}>
       <UnstyledLink to={`/post/${slug}`}>
-        <GatsbyImage image={image} alt="" className={featuredImageCSS()} />
+        {displayImage()}
         <Body>
           <Content>
             <Title>{title}</Title>
