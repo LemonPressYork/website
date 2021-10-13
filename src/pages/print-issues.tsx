@@ -6,6 +6,7 @@ import { PrintIssueCard } from "../components/PrintIssues/PrintIssueCard";
 import { styled } from "../stitches.config";
 import { H1, H3 } from "../components/Heading";
 import { Container } from "../components/Container";
+import { SEO } from "../components/SEO";
 
 const IssuesHolder = styled("div", {
   display: "grid",
@@ -38,6 +39,7 @@ const PrintIssues = ({
 }) => {
   return (
     <Layout>
+      <SEO title="Print Issues" />
       <Container css={{ paddingTop: "$1" }}>
         <H1 style={{ gridColumn: "1/-1" }}>Print Issues</H1>
         <Subtitle style={{ gridColumn: "1/-1" }}>

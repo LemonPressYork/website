@@ -2,10 +2,12 @@ import React from "react";
 import { Container } from "../components/Container";
 import { H1 } from "../components/Heading";
 import { Layout } from "../components/Layout";
+import { SEO } from "../components/SEO";
 
 const About = () => {
   return (
     <Layout>
+      <SEO title="About" />
       <Container css={{ paddingTop: "$1" }}>
         <H1 style={{ gridColumn: "1/13" }}>About The Lemon Press</H1>
         <p style={{ gridColumn: "1/8", display: "flex", alignItems: "center" }}>

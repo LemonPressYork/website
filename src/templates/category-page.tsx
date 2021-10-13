@@ -6,6 +6,7 @@ import { Container } from "../components/Container";
 import { UnstyledLink } from "../components/Link";
 import { CategoryFeature } from "../components/CategoryFeature";
 import { getImage, StaticImage, GatsbyImage } from "gatsby-plugin-image";
+import { SEO } from "../components/SEO";
 
 const PostListHolder = styled("div", {
   display: "grid",
@@ -83,6 +84,7 @@ const BlogPostTemplate = ({ pageContext: { name, posts } }) => {
   if (posts.nodes.length === 0) {
     return (
       <Layout>
+        <SEO title={name} />
         <Container css={{ paddingTop: "$1" }}>
           <H1 style={{ gridColumn: "1/13" }}>{name}</H1>
           <p style={{ gridColumn: "1/13" }}>
@@ -94,6 +96,7 @@ const BlogPostTemplate = ({ pageContext: { name, posts } }) => {
   } else {
     return (
       <Layout>
+        <SEO title={name} />
         <Container css={{ paddingTop: "$1" }}>
           <H1 style={{ gridColumn: "1/-1" }}>{name}</H1>
           <CategoryFeature

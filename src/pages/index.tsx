@@ -13,6 +13,7 @@ import { styled } from "../stitches.config";
 import { H2 } from "../components/Heading";
 import { getImage, GatsbyImage } from "gatsby-plugin-image";
 import { UnstyledLink } from "../components/Link";
+import { SEO } from "../components/SEO";
 
 const CategoryPreview = styled("div", {
   padding: "$1",
@@ -64,6 +65,7 @@ const Home = () => {
   if (isDesktop) {
     return (
       <Layout>
+        <SEO title="Home" />
         <FeaturedPost />
         <Container>
           <CategoryGrid css={{ gridColumn: "1/8", gridRow: "1/4" }} />
@@ -185,6 +187,7 @@ const Home = () => {
   } else {
     return (
       <Layout>
+        <SEO title="Home" />
         <FeaturedPost />
         <Container>
           <CategoryGrid css={{ gridColumn: "1/-1" }} />
