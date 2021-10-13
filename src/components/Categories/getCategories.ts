@@ -11,7 +11,7 @@ export const getCategories = (): { node: Category }[] => {
     allWpCategory: { categories },
   } = useStaticQuery(graphql`
     {
-      allWpCategory {
+      allWpCategory(filter: { name: { ne: "Uncategorized" } }) {
         categories: edges {
           node {
             id

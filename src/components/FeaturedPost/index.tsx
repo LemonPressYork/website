@@ -9,6 +9,7 @@ import { H1 } from "../Heading";
 
 import { UnstyledLink } from "../Link/";
 import { getFeaturedPost } from "./getFeaturedPost";
+import { removeExcerptLink } from "../../utils";
 
 const Wrapper = styled("div", {
   position: "relative",
@@ -85,7 +86,7 @@ export const FeaturedPost = () => {
         <Body>
           <Content>
             <Title>{title}</Title>
-            <Excerpt>{parse(excerpt)}</Excerpt>
+            <Excerpt>{parse(removeExcerptLink(excerpt))}</Excerpt>
           </Content>
         </Body>
       </UnstyledLink>
