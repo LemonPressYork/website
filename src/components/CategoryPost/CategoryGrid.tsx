@@ -7,14 +7,22 @@ import { getCategoryPosts } from "./getCategoryPosts";
 
 const Grid = styled("div", {
   display: "grid",
-  gridTemplateColumns: "repeat( 2, minmax(250px, 1fr) )",
+  gridTemplateColumns: "1fr",
   gridColumnGap: "$1",
   gridRowGap: "$1",
 
   margin: "calc(2 * $1) 0",
+
+  "@mdUp": {
+    gridTemplateColumns: "repeat( 2, minmax(250px, 1fr) )",
+  },
 });
 
-export const CategoryGrid = ({ css }) => {
+interface Props {
+  css: { [key: string]: string };
+}
+
+export const CategoryGrid = ({ css }: Props): JSX.Element => {
   const posts = getCategoryPosts();
 
   return (
@@ -31,6 +39,7 @@ export const CategoryGrid = ({ css }) => {
           <CategoryPost
             title={title}
             to={slug}
+            key={slug}
             category={{ name: nodes[0].name, slug: nodes[0].slug }}
             image={getImage(featuredImage?.node.localFile)}
           />
