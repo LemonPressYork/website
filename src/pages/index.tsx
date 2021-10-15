@@ -1,19 +1,21 @@
 import React from "react";
+import { getImage, GatsbyImage } from "gatsby-plugin-image";
 
 import { Container } from "../components/Container";
 import { Layout } from "../components/Layout";
 import { FeaturedPost } from "../components/FeaturedPost";
 import { CategoryGrid } from "../components/CategoryPost";
 import { LatestIssue } from "../components/LatestIssue";
-import LatestArticleList from "../components/LatestArticlesList";
-import { useMediaQuery } from "../hooks/useMediaQuery";
-import { breakpoints, calculateReadTime, parseHTML, removeExcerptLink } from "../utils";
 import { getCategoryPreviews } from "../utils/getCategoryPreviews";
 import { styled } from "../stitches.config";
 import { H2 } from "../components/Heading";
-import { getImage, GatsbyImage } from "gatsby-plugin-image";
 import { UnstyledLink } from "../components/Link";
 import { SEO } from "../components/SEO";
+import LatestArticleList from "../components/LatestArticlesList";
+
+import { breakpoints, calculateReadTime, parseHTML, removeExcerptLink } from "../utils";
+
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 const CategoryPreview = styled("div", {
   padding: "$1",
@@ -44,7 +46,7 @@ const previewImageStyle = {
   alignSelf: "center",
 };
 
-const Home = () => {
+const Home = (): JSX.Element => {
   const isDesktop = useMediaQuery(breakpoints.landingMid);
   const { first, remaining } = getCategoryPreviews();
 

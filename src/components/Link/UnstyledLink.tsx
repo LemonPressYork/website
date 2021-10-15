@@ -7,7 +7,7 @@ interface Props {
   to: string;
   className?: string;
   children: React.ReactNode;
-  rest: any;
+  rest?: unknown;
 }
 
 const styles = css({
@@ -15,7 +15,7 @@ const styles = css({
   textDecoration: "inherit",
 });
 
-export const UnstyledLink = ({ to, className = "", children, ...rest }: Props) => {
+export const UnstyledLink = ({ to, className = "", children, ...rest }: Props): JSX.Element => {
   const isInternal = /^\/(?!\/)/.test(to);
 
   if (isInternal)
