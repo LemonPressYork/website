@@ -72,9 +72,15 @@ const Excerpt = styled(Text, {
   textShadow: "$1",
 
   margin: 0,
+
+  display: "none",
+
+  "@lgUp": {
+    display: "block",
+  },
 });
 
-export const FeaturedPost = () => {
+export const FeaturedPost = (): JSX.Element => {
   const { title, excerpt, slug, featuredImage } = getFeaturedPost();
 
   const image = getImage(featuredImage.node.localFile);
