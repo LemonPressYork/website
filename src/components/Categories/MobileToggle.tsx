@@ -21,6 +21,7 @@ const Wrapper = styled("div", {
   [`& ${Text}`]: {
     fontWeight: "$semibold",
     color: "$background",
+    margin: 0,
   },
 });
 
@@ -29,7 +30,7 @@ interface Props {
   toggleOpen(): void;
 }
 
-export const MobileToggle = ({ isOpen, toggleOpen }: Props) => {
+export const MobileToggle = ({ isOpen, toggleOpen }: Props): JSX.Element => {
   return (
     <Wrapper onClick={toggleOpen}>
       <Text>Categories</Text>
