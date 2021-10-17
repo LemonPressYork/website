@@ -1,8 +1,7 @@
 import { getImage, GatsbyImage, StaticImage } from "gatsby-plugin-image";
 import React from "react";
-import { css, styled } from "../../stitches.config";
+import { styled } from "../../stitches.config";
 import { calculateReadTime } from "../../utils";
-import { getCategoryPosts } from "../CategoryPost/getCategoryPosts";
 import { H2, H3 } from "../Heading";
 import { UnstyledLink } from "../Link";
 import { getLatestArticles } from "./getLatestArticles";

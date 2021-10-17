@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { css, styled } from "../stitches.config";
 import { Layout } from "../components/Layout";
-import { H1, H2, H3 } from "../components/Heading";
+import { H1, H2 } from "../components/Heading";
 import { Container } from "../components/Container";
 import { UnstyledLink } from "../components/Link";
 import { CategoryFeature } from "../components/CategoryFeature";
