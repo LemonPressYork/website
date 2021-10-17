@@ -31,7 +31,7 @@ const Wrapper = styled("div", {
 });
 
 const Body = styled("div", {
-  position: "absolute",
+  position: "relative",
   top: 0,
   left: 0,
 
@@ -56,12 +56,16 @@ const Content = styled(Container, {
   display: "flex",
   flexDirection: "column",
   justifyContent: "end",
-  height: "100%",
+
+  minHeight: 350,
 });
 
 const featuredImageCSS = css({
   maxHeight: 480,
   minHeight: 300,
+
+  position: "absolute",
+  height: "100%",
 });
 
 const Excerpt = styled(Text, {
