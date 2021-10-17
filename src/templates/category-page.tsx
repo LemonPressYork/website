@@ -97,7 +97,7 @@ const BlogPostTemplate = ({ pageContext: { name, posts } }) => {
     return (
       <Layout>
         <SEO title={name} />
-        <Container css={{ paddingTop: "$1" }}>
+        <Container css={{ marginTop: "$2" }}>
           <H1 style={{ gridColumn: "1/-1" }}>{name}</H1>
           <CategoryFeature
             slug={posts.nodes[0].slug}
