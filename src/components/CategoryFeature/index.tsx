@@ -71,6 +71,12 @@ const Excerpt = styled(Text, {
   textShadow: "$1",
 
   margin: 0,
+
+  display: "none",
+
+  "@lgUp": {
+    display: "block",
+  },
 });
 
 export const CategoryFeature = ({ title, excerpt, slug, featuredImage }) => {
