@@ -99,8 +99,6 @@ export const CategoryFeature = ({ title, excerpt, slug, featuredImage }) => {
     );
   };
 
-  console.log(excerpt);
-
   return (
     <Wrapper style={{ gridColumn: "1/-1" }}>
       <UnstyledLink to={`/post/${slug}`}>

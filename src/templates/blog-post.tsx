@@ -49,7 +49,6 @@ const PostDetails = styled(H2, {
 
 const BlogPostTemplate = ({ data: { previous, next, post } }) => {
   const displayFeaturedImage = () => {
-    console.log(post);
     if (post.featuredImage) {
       return (
         <GatsbyImage
