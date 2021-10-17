@@ -108,7 +108,7 @@ const BlogPostTemplate = ({ pageContext: { name, posts } }) => {
           <PostListHolder style={{ gridColumn: "1/-1" }}>
             {posts.nodes.slice(1).map(({ slug, title, author, featuredImage }) => {
               return (
-                <PostPreview>
+                <PostPreview key={slug}>
                   <UnstyledLink to={`/post/${slug}`}>
                     {displayListImage(featuredImage)}
                     <PostInfo>

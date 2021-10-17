@@ -33,5 +33,5 @@ const options = {
   },
 };
 
-export const parseHTML = (html, customOptions = {}) =>
+export const parseHTML = (html: string, customOptions = {}) =>
   parse(html, { ...options, ...customOptions });
