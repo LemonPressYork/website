@@ -39,7 +39,7 @@ const BlogIndex = ({ data, pageContext: { nextPagePath, previousPagePath } }) =>
   return (
     <Layout>
       <SEO title="All posts" />
-      <Container css={{ paddingTop: "$1" }}>
+      <Container css={{ margin: "$2 auto" }}>
         <H1 style={{ gridColumn: "1/-1" }}>Article Archive</H1>
         <H3 style={{ gridColumn: "1/-1", fontWeight: "normal" }}>
           Here's all the articles we've ever uploaded all in one place, we can't decide if this is a

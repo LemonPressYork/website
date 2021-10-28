@@ -3,9 +3,6 @@ import { styled } from "../../stitches.config";
 import { PrintIssueCard } from "../PrintIssues/PrintIssueCard";
 import { getLatestIssue } from "./getLatestIssue";
 
-import { useMediaQuery } from "../../hooks/useMediaQuery";
-import { breakpoints } from "../../utils/breakpoints";
-
 const Wrapper = styled("div", {
   width: "300px",
 });

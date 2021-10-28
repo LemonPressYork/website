@@ -18,6 +18,9 @@ export const Text = styled("p", {
       light: {
         color: "$textLight",
       },
+      white: {
+        color: "#FFFFFF",
+      },
     },
   },
 

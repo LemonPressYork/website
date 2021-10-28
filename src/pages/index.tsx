@@ -50,8 +50,6 @@ const Home = (): JSX.Element => {
   const isDesktop = useMediaQuery(breakpoints.landingMid);
   const { first, remaining } = getCategoryPreviews();
 
-  console.log(remaining);
-
   const displayImage = (featuredImage) => {
     if (featuredImage) {
       return (

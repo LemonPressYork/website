@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { css, styled } from "../stitches.config";
 import { Layout } from "../components/Layout";
-import { H1, H2, H3 } from "../components/Heading";
+import { H1, H2 } from "../components/Heading";
 import { Container } from "../components/Container";
 import { UnstyledLink } from "../components/Link";
 import { CategoryFeature } from "../components/CategoryFeature";
@@ -97,7 +97,7 @@ const BlogPostTemplate = ({ pageContext: { name, posts } }) => {
     return (
       <Layout>
         <SEO title={name} />
-        <Container css={{ paddingTop: "$1" }}>
+        <Container css={{ marginTop: "$2" }}>
           <H1 style={{ gridColumn: "1/-1" }}>{name}</H1>
           <CategoryFeature
             slug={posts.nodes[0].slug}
@@ -108,7 +108,7 @@ const BlogPostTemplate = ({ pageContext: { name, posts } }) => {
           <PostListHolder style={{ gridColumn: "1/-1" }}>
             {posts.nodes.slice(1).map(({ slug, title, author, featuredImage }) => {
               return (
-                <PostPreview>
+                <PostPreview key={slug}>
                   <UnstyledLink to={`/post/${slug}`}>
                     {displayListImage(featuredImage)}
                     <PostInfo>

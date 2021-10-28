@@ -1,6 +1,6 @@
 import React from "react";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import parse from "html-react-parser";
+import { attributesToProps, domToReact } from "html-react-parser";
 import { styled, css } from "../../stitches.config";
 
 import { Text } from "../Text";
@@ -9,7 +9,7 @@ import { H1 } from "../Heading";
 
 import { UnstyledLink } from "../Link/";
 import { getFeaturedPost } from "./getFeaturedPost";
-import { removeExcerptLink } from "../../utils";
+import { removeExcerptLink, parseHTML } from "../../utils";
 
 const Wrapper = styled("div", {
   position: "relative",
@@ -32,7 +32,7 @@ const Wrapper = styled("div", {
 });
 
 const Body = styled("div", {
-  position: "absolute",
+  position: "relative",
   top: 0,
   left: 0,
 
@@ -52,21 +52,25 @@ const Title = styled(H1, {
 
 const Content = styled(Container, {
   position: "relative",
-  zIndex: 1,
 
   display: "flex",
   flexDirection: "column",
   justifyContent: "end",
-  height: "100%",
+  gap: "$1",
+
+  zIndex: 1,
+  minHeight: 350,
 });
 
 const featuredImageCSS = css({
   maxHeight: 480,
   minHeight: 300,
+
+  position: "absolute",
+  height: "100%",
 });
 
 const Excerpt = styled(Text, {
-  color: "#FFFFFF",
   fontWeight: "$semibold",
   fontSize: "$3",
   textShadow: "$1",
@@ -92,7 +96,18 @@ export const FeaturedPost = (): JSX.Element => {
         <Body>
           <Content>
             <Title>{title}</Title>
-            <Excerpt>{parse(removeExcerptLink(excerpt))}</Excerpt>
+            {parseHTML(removeExcerptLink(excerpt), {
+              replace: (domNode) => {
+                if (domNode.attribs && domNode.name === "p") {
+                  const props = attributesToProps(domNode.attribs);
+                  return (
+                    <Excerpt color="white" {...props}>
+                      {domToReact(domNode.children)}
+                    </Excerpt>
+                  );
+                }
+              },
+            })}
           </Content>
         </Body>
       </UnstyledLink>

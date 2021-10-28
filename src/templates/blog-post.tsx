@@ -14,11 +14,13 @@ import { TextLink } from "../components/Link";
 import { calculateReadTime, cleanHTML, parseHTML } from "../utils";
 
 const Article = styled("article", {
-  gridColumn: "3 / -3",
+  gridColumn: "2 / -2",
 
   display: "flex",
   flexDirection: "column",
   gap: "$1",
+
+  margin: "$2 0",
 });
 
 const BlogPostNav = styled("nav", {
@@ -49,7 +51,6 @@ const PostDetails = styled(H2, {
 
 const BlogPostTemplate = ({ data: { previous, next, post } }) => {
   const displayFeaturedImage = () => {
-    console.log(post);
     if (post.featuredImage) {
       return (
         <GatsbyImage
@@ -85,7 +86,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
           <ul>
             <li>
               {previous && (
-                <TextLink to={`/post/${previous.slug}`}>← {parse(previous.title)}</TextLink>
+                <TextLink to={`/post/${previous.slug}`}>← {parseHTML(previous.title)}</TextLink>
               )}
             </li>
 

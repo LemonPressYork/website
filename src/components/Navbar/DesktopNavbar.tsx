@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { styled } from "../../stitches.config";
 
 import Logo from "../../media/logo.png";

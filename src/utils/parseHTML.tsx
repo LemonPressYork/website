@@ -33,5 +33,39 @@ const options = {
   },
 };
 
-export const parseHTML = (html, customOptions = {}) =>
+const options2 = {
+  replace: (domNode) => {
+    if (domNode.attribs && domNode.name === "p") {
+      const props = attributesToProps(domNode.attribs);
+      return <Text {...props}>{domToReact(domNode.children)}</Text>;
+    }
+
+    if (domNode.attribs && domNode.name === "h1") {
+      const props = attributesToProps(domNode.attribs);
+      return <H1 {...props}>{domToReact(domNode.children)}</H1>;
+    }
+
+    if (domNode.attribs && domNode.name === "h2") {
+      const props = attributesToProps(domNode.attribs);
+      return <H2 {...props}>{domToReact(domNode.children)}</H2>;
+    }
+
+    if (domNode.attribs && domNode.name === "h3") {
+      const props = attributesToProps(domNode.attribs);
+      return <H3 {...props}>{domToReact(domNode.children)}</H3>;
+    }
+
+    if (domNode.attribs && domNode.name === "a") {
+      const props = attributesToProps(domNode.attribs);
+      return <TextLink {...props}>{domToReact(domNode.children)}</TextLink>;
+    }
+
+    if (domNode.attribs && domNode.name === "figure") {
+      const props = attributesToProps(domNode.attribs);
+      return <Figure {...props}>{domToReact(domNode.children)}</Figure>;
+    }
+  },
+};
+
+export const parseHTML = (html: string, customOptions = {}) =>
   parse(html, { ...options, ...customOptions });
