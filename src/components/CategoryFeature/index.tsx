@@ -10,9 +10,9 @@ import { H1 } from "../Heading";
 import { UnstyledLink } from "../Link/";
 import { removeExcerptLink, parseHTML } from "../../utils";
 
-const Wrapper = styled("div", {
+const Wrapper = styled(UnstyledLink, {
   position: "relative",
-
+  gridColumn: "1/-1",
   "&:after": {
     content: "",
     position: "absolute",
@@ -64,7 +64,7 @@ const Content = styled(Container, {
 const featuredImageCSS = css({
   maxHeight: 480,
   minHeight: 300,
-
+  width: "100%",
   position: "absolute",
   height: "100%",
 });
@@ -105,27 +105,25 @@ export const CategoryFeature = ({ title, excerpt, slug, featuredImage }) => {
   };
 
   return (
-    <Wrapper style={{ gridColumn: "1/-1" }}>
-      <UnstyledLink to={`/post/${slug}`}>
-        {displayImage()}
-        <Body>
-          <Content>
-            <Title>{title}</Title>
-            {parseHTML(removeExcerptLink(excerpt), {
-              replace: (domNode) => {
-                if (domNode.attribs && domNode.name === "p") {
-                  const props = attributesToProps(domNode.attribs);
-                  return (
-                    <Excerpt color="white" {...props}>
-                      {domToReact(domNode.children)}
-                    </Excerpt>
-                  );
-                }
-              },
-            })}
-          </Content>
-        </Body>
-      </UnstyledLink>
+    <Wrapper to={`/post/${slug}`}>
+      {displayImage()}
+      <Body>
+        <Content>
+          <Title>{title}</Title>
+          {parseHTML(removeExcerptLink(excerpt), {
+            replace: (domNode) => {
+              if (domNode.attribs && domNode.name === "p") {
+                const props = attributesToProps(domNode.attribs);
+                return (
+                  <Excerpt color="white" {...props}>
+                    {domToReact(domNode.children)}
+                  </Excerpt>
+                );
+              }
+            },
+          })}
+        </Content>
+      </Body>
     </Wrapper>
   );
 };

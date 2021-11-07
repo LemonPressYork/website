@@ -10,7 +10,7 @@ const Holder = styled("div", {
   padding: "$2",
 });
 
-const ArticleHolder = styled("div", {
+const ArticleHolder = styled(UnstyledLink, {
   marginTop: "$1",
   marginBottom: "$1",
   display: "grid",
@@ -47,11 +47,9 @@ const LatestArticleList = ({ css }) => {
     <Holder css={css}>
       <H2>Latest Articles</H2>
       {posts.map(({ node: { title, slug, content, featuredImage } }) => (
-        <ArticleHolder>
+        <ArticleHolder to={`/post/${slug}`}>
           <DetailsHoder style={{ gridColumn: "1/6" }}>
-            <H3>
-              <UnstyledLink to={`/post/${slug}`}>{title}</UnstyledLink>
-            </H3>
+            <H3>{title}</H3>
             <p>{calculateReadTime(content)} minute read</p>
           </DetailsHoder>
           <PostImage image={getImage(featuredImage?.node.localFile)} />
