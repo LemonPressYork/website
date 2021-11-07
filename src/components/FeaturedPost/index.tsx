@@ -65,7 +65,7 @@ const Content = styled(Container, {
 const featuredImageCSS = css({
   maxHeight: 480,
   minHeight: 300,
-
+  width: "100%",
   position: "absolute",
   height: "100%",
 });
@@ -90,8 +90,8 @@ export const FeaturedPost = (): JSX.Element => {
   const image = getImage(featuredImage.node.localFile);
 
   return (
-    <Wrapper>
-      <UnstyledLink to={`/post/${slug}`}>
+    <UnstyledLink to={`/post/${slug}`}>
+      <Wrapper>
         <GatsbyImage image={image} alt="" className={featuredImageCSS()} />
         <Body>
           <Content>
@@ -110,7 +110,7 @@ export const FeaturedPost = (): JSX.Element => {
             })}
           </Content>
         </Body>
-      </UnstyledLink>
-    </Wrapper>
+      </Wrapper>
+    </UnstyledLink>
   );
 };
